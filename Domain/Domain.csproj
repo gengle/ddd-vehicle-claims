@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,18 +45,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Claim.cs" />
-    <Compile Include="ClaimException.cs" />
+    <Compile Include="Shared\ClaimException.cs" />
     <Compile Include="ClaimId.cs" />
     <Compile Include="ClaimNo.cs" />
-    <Compile Include="IAggregateRoot.cs" />
-    <Compile Include="Infrastructure\AcmePolicyService.cs" />
-    <Compile Include="Infrastructure\Guard.cs" />
-    <Compile Include="Infrastructure\AcmeFairMarketValueService.cs" />
-    <Compile Include="Infrastructure\SqlClaimRepository.cs" />
+    <Compile Include="Commands\AssignVehicleCommand.cs" />
+    <Compile Include="Commands\CreateClaimCommand.cs" />
+    <Compile Include="Commands\Handlers\AssignVehicleHandler.cs" />
+    <Compile Include="Commands\Handlers\CreateClaimHandler.cs" />
+    <Compile Include="Infrastructure\Acme\AcmeUnderwritingService.cs" />
+    <Compile Include="Infrastructure\AutofacCommandDispatcher.cs" />
+    <Compile Include="Shared\ICommand.cs" />
+    <Compile Include="Services\ICommandDispatcher.cs" />
+    <Compile Include="Shared\ICommandHandler.cs" />
+    <Compile Include="Commands\Handlers\ProcessPayoutHandler.cs" />
+    <Compile Include="Commands\ProcessPayoutCommand.cs" />
+    <Compile Include="Shared\IAggregateRoot.cs" />
+    <Compile Include="Infrastructure\Acme\AcmePolicyService.cs" />
+    <Compile Include="Infrastructure\Data\MemoryClaimRepository.cs" />
+    <Compile Include="Infrastructure\Modules\CommandModule.cs" />
+    <Compile Include="Infrastructure\Modules\CoreModule.cs" />
+    <Compile Include="Shared\Guard.cs" />
+    <Compile Include="Infrastructure\Acme\AcmeFairMarketValueService.cs" />
+    <Compile Include="Infrastructure\Data\SqlClaimRepository.cs" />
+    <Compile Include="Payout.cs" />
     <Compile Include="PolicyNo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IClaimRepository.cs" />
-    <Compile Include="DomainManager.cs" />
+    <Compile Include="Services\IUnderwritingService.cs" />
     <Compile Include="Services\IPolicyService.cs" />
     <Compile Include="Services\IFairMarketValueService.cs" />
     <Compile Include="Unit.cs" />

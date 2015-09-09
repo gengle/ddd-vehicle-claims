@@ -1,4 +1,4 @@
-﻿namespace Domain
+﻿namespace Domain.Shared
 {
     public interface IAggregateRoot<out T>
     {

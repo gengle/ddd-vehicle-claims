@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Domain
+namespace Domain.Shared
 {
     [Serializable]
     public class ClaimException : Exception

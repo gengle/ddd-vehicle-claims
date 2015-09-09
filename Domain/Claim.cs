@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Infrastructure;
 using Domain.Services;
+using Domain.Shared;
 
 namespace Domain
 {
@@ -20,6 +21,11 @@ namespace Domain
         public ClaimNo ClaimNo { get; private set; } = Domain.ClaimNo.Empty;
 
         public HashSet<Unit> Units { get; } = new HashSet<Unit>();
+        public HashSet<Payout> Payouts { get; } = new HashSet<Payout>();
+
+        public Payout PendingPayout => new Payout(this.Units.Sum(x => x.MonetaryAssessment)
+                                                  - this.Payouts.Sum(x => x.Amount));
+        
         public PolicyNo PolicyNo { get; private set; } = Domain.PolicyNo.Empty;
 
         public Claim AssignVehicle(Vehicle vehicle, 
@@ -37,6 +43,21 @@ namespace Domain
                 Units.Add(unit);
             }
             
+            return this;
+        }
+
+        public Claim ProcessPayout(Payout payout, IUnderwritingService underwritingService)
+        {
+            Guard.NotNull(() => underwritingService, underwritingService);
+            if (!payout.HasValue())
+                throw new ClaimException("You are not allowed to process a payout for no money");
+
+            if (payout > PendingPayout)
+                throw new ClaimException($"{payout} is greater than pending {PendingPayout}");
+
+            underwritingService.ProcessPayout(this.PolicyNo, payout);
+
+            Payouts.Add(payout);
             return this;
         }
 

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Domain.Infrastructure
+namespace Domain.Infrastructure.Data
 {
     public class SqlClaimRepository
         :Repositories.IClaimRepository

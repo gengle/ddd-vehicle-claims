@@ -7,9 +7,9 @@ namespace Domain
     {
         public int UnitNo { get; }
         public Vehicle Vehicle { get; }
-        public decimal? MonetaryAssessment { get; private set; }
+        public decimal MonetaryAssessment { get; private set; }
 
-        protected Unit(int unitNo, Vehicle vehicle = null, decimal? monetaryAssessment = null)
+        protected Unit(int unitNo, Vehicle vehicle = null, decimal monetaryAssessment = 0)
         {
             UnitNo = unitNo;
             Vehicle = vehicle;

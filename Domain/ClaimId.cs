@@ -54,5 +54,10 @@ namespace Domain
         {
             return new ClaimId(Guid.NewGuid());
         }
+
+        public static ClaimId FromString(string id)
+        {
+            return new ClaimId(Guid.Parse(id));
+        }
     }
 }

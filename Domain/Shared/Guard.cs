@@ -34,7 +34,7 @@ using System;
 using System.Diagnostics;
 using System.Linq.Expressions;
 
-namespace Domain.Infrastructure
+namespace Domain.Shared
 {
     /// <summary>
     /// Common guard class for argument validation.
