@@ -5,6 +5,7 @@ namespace Domain
     public class PolicyNo : IEquatable<PolicyNo>
     {
         public string Value { get; }
+        public static PolicyNo Empty { get; } = new PolicyNo(string.Empty);
 
         public PolicyNo(string value)
         {
@@ -49,6 +50,11 @@ namespace Domain
         public static PolicyNo FromString(string value)
         {
             return new PolicyNo(value);
+        }
+
+        public bool IsEmpty()
+        {
+            return Empty.Equals(this);
         }
     }
 }

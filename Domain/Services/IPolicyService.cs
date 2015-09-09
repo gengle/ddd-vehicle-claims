@@ -8,6 +8,6 @@ namespace Domain.Services
 {
     public interface IPolicyService
     {
-        PolicyInfo GetPolicy(PolicyNo policyNo);
+        ClaimNo GenerateClaimNo(PolicyNo policyNo);
     }
 }

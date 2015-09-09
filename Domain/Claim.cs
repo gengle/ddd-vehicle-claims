@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Infrastructure;
+using Domain.Services;
 
 namespace Domain
 {
@@ -12,31 +14,29 @@ namespace Domain
 
         public Claim(ClaimId id)
         {
-            
+            this.Id = id;
         }
 
         public ClaimNo ClaimNo { get; private set; } = Domain.ClaimNo.Empty;
 
         public HashSet<Unit> Units { get; } = new HashSet<Unit>();
+        public PolicyNo PolicyNo { get; private set; } = Domain.PolicyNo.Empty;
 
-        public Claim WithClaimNo(ClaimNo value)
-        {
-            if (!ClaimNo.IsEmpty())
-                throw new ClaimException("Unable to change ClaimId Once set");
-            ClaimNo = value;
-            return this;
-        }
-        public Claim WithVehicle(Vehicle vehicle, 
+        public Claim AssignVehicle(Vehicle vehicle, 
             Services.IFairMarketValueService fairMarketValueService)
         {
             Guard.NotNull(()=>vehicle, vehicle);
             Guard.NotNull(() => fairMarketValueService, fairMarketValueService);
 
-            var unit = Unit.Create(this)
-                .WithVehicle(vehicle)
-                .WithMonetaryAssessment(fairMarketValueService.GetValue(vehicle));
-                            
-            Units.Add(unit);
+            if (!Units.Any(x => x.Vehicle.Equals(vehicle)))
+            {
+                var unit = Unit.Create(this)
+                    .WithVehicle(vehicle)
+                    .WithMonetaryAssessment(fairMarketValueService.GetValue(vehicle));
+
+                Units.Add(unit);
+            }
+            
             return this;
         }
 
@@ -70,8 +70,20 @@ namespace Domain
             return !Equals(left, right);
         }
 
-        public Claim AssignPolicy(PolicyInfo policyInfo)
+        public Claim AssignPolicy(PolicyNo policyNo, IPolicyService policyService)
         {
+            Guard.NotNull(()=>policyNo, policyNo);
+            Guard.NotNull(()=>policyService, policyService);
+
+            if (!policyNo.Equals(PolicyNo) && !this.PolicyNo.IsEmpty())
+                throw new ClaimException("Unable to change Policy once set");
+
+            if (!policyNo.Equals(PolicyNo))
+            {
+                this.PolicyNo = policyNo;
+                this.ClaimNo = policyService.GenerateClaimNo(policyNo);
+            }
+            
             return this;
         }
     }
