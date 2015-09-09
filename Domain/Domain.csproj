@@ -52,7 +52,7 @@
     <Compile Include="PolicyNo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IClaimRepository.cs" />
-    <Compile Include="Services\DomainManager.cs" />
+    <Compile Include="DomainManager.cs" />
     <Compile Include="Services\IPolicyService.cs" />
     <Compile Include="Services\IFairMarketValueService.cs" />
     <Compile Include="Unit.cs" />
