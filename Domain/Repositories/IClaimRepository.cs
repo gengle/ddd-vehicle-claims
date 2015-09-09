@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Repositories
 {
-    public interface IClaimRepository
+    public interface IClaimRepository: IDisposable
     {
         Claim GetById(ClaimId id);
-        void Save(Claim claim);
+        void AddOrUpdate(Claim claim);
     }
 }

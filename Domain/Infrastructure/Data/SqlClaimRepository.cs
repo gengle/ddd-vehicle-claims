@@ -10,7 +10,12 @@ namespace Domain.Infrastructure.Data
             throw new NotImplementedException();
         }
 
-        public void Save(Claim claim)
+        public void AddOrUpdate(Claim claim)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
         {
             throw new NotImplementedException();
         }

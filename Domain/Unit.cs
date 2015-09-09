@@ -5,15 +5,20 @@ namespace Domain
 {
     public class Unit : IEquatable<Unit>
     {
-        public int UnitNo { get; }
-        public Vehicle Vehicle { get; }
-        public decimal MonetaryAssessment { get; private set; }
+        public int UnitNo { get; set; }
+        public Vehicle Vehicle { get; set; }
+        public decimal MonetaryAssessment { get; set; }
 
         protected Unit(int unitNo, Vehicle vehicle = null, decimal monetaryAssessment = 0)
         {
             UnitNo = unitNo;
             Vehicle = vehicle;
             MonetaryAssessment = monetaryAssessment;
+        }
+
+        public Unit()
+        {
+            
         }
 
         public bool Equals(Unit other)

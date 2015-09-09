@@ -13,7 +13,12 @@ namespace Domain
             Value = value;
         }
 
-        public Guid Value { get; private set; }
+        public ClaimId()
+        {
+            
+        }
+
+        public Guid Value { get; set; }
 
         public override string ToString()
         {

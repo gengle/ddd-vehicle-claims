@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Domain.Infrastructure.Data
 {
@@ -19,9 +20,22 @@ namespace Domain.Infrastructure.Data
             return claim;
         }
 
-        public void Save(Claim claim)
+        public void AddOrUpdate(Claim claim)
         {
+            var payload = JsonConvert.SerializeObject(claim);
+            var clone = JsonConvert.DeserializeObject<Claim>(payload);
+            _claims.Add(clone);
             //noop
+        }
+
+        bool disposed = false;
+        public void Dispose()
+        {
+            if (!disposed)
+            {
+                disposed = true;
+                //flush
+            }
         }
     }
 }

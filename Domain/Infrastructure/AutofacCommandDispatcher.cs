@@ -19,9 +19,10 @@ namespace Domain.Infrastructure
         public void Dispatch<TCommand>(TCommand command) where TCommand : ICommand
         {
             var handler = this._context.Resolve<ICommandHandler<TCommand>>();
-
             var claim = _claimRepository.GetById(ClaimId.FromString(command.Id));
+
             handler.Handle(command, claim);
+            _claimRepository.AddOrUpdate(claim);
         }
     }
 }
