@@ -1,22 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Infrastructure;
 using Domain.Services;
 using Domain.Shared;
+using Domain.States;
 
 namespace Domain
 {
     public class Claim: IAggregateRoot<ClaimId>, IEquatable<Claim>
     {
+        internal ClaimState _state;
+
         #region Properties
         public ClaimId Id { get; }
 
         public Claim(ClaimId id)
         {
             this.Id = id;
+            _state = new NewClaim(this);
         }
 
         public ClaimNo ClaimNo { get; set; } = Domain.ClaimNo.Empty;
@@ -28,6 +34,8 @@ namespace Domain
                                                   - this.Payouts.Sum(x => x.Amount));
         
         public PolicyNo PolicyNo { get; set; } = Domain.PolicyNo.Empty;
+        
+
         #endregion
 
         #region Equals and Operator Overloads
@@ -63,42 +71,45 @@ namespace Domain
         #endregion
 
         #region Aggregate Actions
-        public Claim AssignPolicy(PolicyNo policyNo, IPolicyService policyService)
+
+        public void AssignPolicy(PolicyNo policyNo, IPolicyService policyService)
         {
-            Guard.NotNull(()=>policyNo, policyNo);
-            Guard.NotNull(()=>policyService, policyService);
-
-            if (!policyNo.Equals(PolicyNo) && !this.PolicyNo.IsEmpty())
-                throw new ClaimException("Unable to change Policy once set");
-
-            if (!policyNo.Equals(PolicyNo))
+            _state.AssignPolicy(() =>
             {
-                this.PolicyNo = policyNo;
-                this.ClaimNo = policyService.GenerateClaimNo(policyNo);
-            }
-            
-            return this;
+                Guard.NotNull(() => policyNo, policyNo);
+                Guard.NotNull(() => policyService, policyService);
+
+                if (!policyNo.Equals(PolicyNo) && !this.PolicyNo.IsEmpty())
+                    throw new ClaimException("Unable to change Policy once set");
+
+                if (!policyNo.Equals(PolicyNo))
+                {
+                    this.PolicyNo = policyNo;
+                    this.ClaimNo = policyService.GenerateClaimNo(policyNo);
+                }
+            });
         }
 
-        public Claim AssignVehicle(Vehicle vehicle,
+        public void AssignVehicle(Vehicle vehicle,
             Services.IFairMarketValueService fairMarketValueService)
         {
-            Guard.NotNull(() => vehicle, vehicle);
-            Guard.NotNull(() => fairMarketValueService, fairMarketValueService);
-
-            if (!Units.Any(x => x.Vehicle.Equals(vehicle)))
+            _state.AssignVehicle(() =>
             {
-                var unit = Unit.Create(this)
-                    .WithVehicle(vehicle)
-                    .WithMonetaryAssessment(fairMarketValueService.GetValue(vehicle));
+                Guard.NotNull(() => vehicle, vehicle);
+                Guard.NotNull(() => fairMarketValueService, fairMarketValueService);
 
-                Units.Add(unit);
-            }
+                if (!Units.Any(x => x.Vehicle.Equals(vehicle)))
+                {
+                    var unit = Unit.Create(this)
+                        .WithVehicle(vehicle)
+                        .WithMonetaryAssessment(fairMarketValueService.GetValue(vehicle));
 
-            return this;
+                    Units.Add(unit);
+                }
+            });
         }
 
-        public Claim ProcessPayout(Payout payout, IUnderwritingService underwritingService)
+        public void OnProcessPayout(Payout payout, IUnderwritingService underwritingService)
         {
             Guard.NotNull(() => underwritingService, underwritingService);
             if (!payout.HasValue())
@@ -110,8 +121,21 @@ namespace Domain
             underwritingService.ProcessPayout(this.PolicyNo, payout);
 
             Payouts.Add(payout);
+        }
+        public Claim ProcessPayout(Payout payout, IUnderwritingService underwritingService)
+        {
             return this;
         }
         #endregion
+
+        public void ApprovePayout(Payout payout, IUnderwritingService underwritingService)
+        {
+            _state.Approve(() => Expression.Empty());
+        }
+
+        public void RejectPayout(Payout payout, IUnderwritingService underwritingService)
+        {
+            _state.Reject(() => Expression.Empty());
+        }
     }
 }

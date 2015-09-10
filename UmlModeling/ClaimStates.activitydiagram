@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" dslVersion="1.0.0.0" Id="2da6980c-9ed6-4191-8c7e-2b634b3c39aa" name="ClaimStates" linkedPackageId="fb1f191c-cdf6-4640-9a66-b42fd0c68a25" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="3954bb6d-3e90-47df-8629-f678bc5239c8">
+      <profileInstance Id="4096b402-52a6-477e-98e3-a4a65c1322cf" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="459f27a2-d9b4-42b6-b79b-6d13e8f9b606">
+      <profileInstance Id="d359100d-ac34-44c3-882a-586621980772" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="ea5d8511-6c19-4f08-9b84-b5ed5fb8ee98" name="ClaimStates" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="4ef3afdb-e8c1-46d8-934d-baa906bae0bb" />
+        <nodes>
+          <initialNode Id="94514c00-5808-406b-a126-e374e8624863" name="Initial1" isLeaf="false">
+            <elementDefinition Id="cfa38465-bd9e-4a86-b397-36ab4dea5b09" />
+            <flowNodeTargets>
+              <controlFlow Id="7a369530-66b3-471f-9a26-3ebf87c00ea9" isLeaf="false">
+                <opaqueActionMoniker Id="1f36cbcf-5819-4ff2-a259-cbd2f1530714" LastKnownName="NewClaim" />
+                <elementDefinition Id="ea3adfce-2ccc-4c92-938d-cae50af61c7d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="1f36cbcf-5819-4ff2-a259-cbd2f1530714" name="NewClaim" isLeaf="false">
+            <elementDefinition Id="af6eb7a6-36e0-42ec-a146-80546b23d825" />
+            <pins>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="1c2825fd-b0b4-45b4-9507-2153ab5bd774" name="Assign Policy" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="e48bc0a0-06bc-4341-8bd5-fd36e56ea8b7" />
+                  <objectFlowTargets>
+                    <objectFlow Id="8d7aef79-b4ec-4c90-b65f-7300795b2549" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <opaqueActionMoniker Id="2feda426-fd40-4fad-91f6-0205f0a01965" LastKnownName="Opened" />
+                      <elementDefinition Id="21702d9f-0aab-4023-91ae-b568123de8f0" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="f3786fd2-e522-4f43-b5c2-de43f7d43bbe" name="2147483647" value="2147483647">
+                      <elementDefinition Id="f84e2556-f827-44f8-8251-ca6f4aed2f14" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+            </pins>
+          </opaqueAction>
+          <opaqueAction Id="2feda426-fd40-4fad-91f6-0205f0a01965" name="Opened" isLeaf="false">
+            <elementDefinition Id="3cab4978-4d2f-4e4c-94d9-869e7fc5b6af" />
+            <pins>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="ab114370-a053-476e-b2d4-71b9929203c4" name="Assign Vehicle" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="cb2e359c-87ff-4798-ad39-5ff88c147bf2" />
+                  <objectFlowTargets>
+                    <objectFlow Id="e0fcb2c3-0bde-43ae-9e7d-83e181d81f84" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <opaqueActionMoniker Id="d1bffcdb-4806-4ec4-b627-c45aec299263" LastKnownName="Requesting Approval" />
+                      <elementDefinition Id="e777c17a-465c-47c6-8c32-31a733338210" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="d9ef6fec-d1a2-49b7-baaf-66252578c3fb" name="2147483647" value="2147483647">
+                      <elementDefinition Id="325c0db0-8c1f-41d9-b0d2-f845b8ca90b2" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+            </pins>
+          </opaqueAction>
+          <opaqueAction Id="d1bffcdb-4806-4ec4-b627-c45aec299263" name="Requesting Approval" isLeaf="false">
+            <elementDefinition Id="5d2820f9-3a1d-4cd2-8b63-07d1c8d93faa" />
+            <pins>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="43aa2969-7bed-4762-a340-5d3504a15217" name="Assign Vehicle" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="60918612-ea94-4bc6-aca5-a02207e7182d" />
+                  <objectFlowTargets>
+                    <objectFlow Id="3804cbbc-75f7-481d-ae8a-025f08722824" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <opaqueActionMoniker Id="d1bffcdb-4806-4ec4-b627-c45aec299263" LastKnownName="Requesting Approval" />
+                      <elementDefinition Id="524830ac-3722-4bf7-abf2-ea2a99d41ad8" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="c148bc12-1127-451e-b759-70a55524529f" name="2147483647" value="2147483647">
+                      <elementDefinition Id="49f1e7bf-12fc-48f1-978a-251597a3b90f" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="0744fdc9-582e-4272-be42-61b2d153c501" name="Approve" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="3174a2e7-8913-451e-bd3f-6c17411a8d0b" />
+                  <objectFlowTargets>
+                    <objectFlow Id="7c96814a-a2a5-417d-b4a6-9cf2e600b9df" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <opaqueActionMoniker Id="ab7a70ac-16cb-44cd-b959-37a1eed7757a" LastKnownName="Approved" />
+                      <elementDefinition Id="f4ad29b6-3812-4bc9-9c6c-abde46cc2e1a" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="036e80f6-d90b-4afd-98a5-99440d0af9f3" name="2147483647" value="2147483647">
+                      <elementDefinition Id="245b318b-1255-4add-853c-a0ea77c51c3c" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="07bde2a6-9abe-4bce-acb8-0ac85ed45e77" name="Reject" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="ca465c87-c1d0-4cf5-b3f9-53e30e544481" />
+                  <objectFlowTargets>
+                    <objectFlow Id="d592cb76-ea7c-40bc-9272-265f6f82e10a" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <opaqueActionMoniker Id="e129ef85-ec6a-4953-9cc3-8c69f27e8f7d" LastKnownName="Rejected" />
+                      <elementDefinition Id="8f686104-e9c3-4740-9ac9-e595fa4e61ef" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="e9208f87-0954-45d7-816e-0053fd6dafce" name="2147483647" value="2147483647">
+                      <elementDefinition Id="de1333db-283a-42f6-9833-45a4e4d80d3f" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+            </pins>
+          </opaqueAction>
+          <opaqueAction Id="ab7a70ac-16cb-44cd-b959-37a1eed7757a" name="Approved" isLeaf="false">
+            <elementDefinition Id="86a6a3bb-f0e3-4b55-abe6-22120cd7d088" />
+            <pins>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="87229316-9c1e-406d-81af-e7cee9d9dfef" name="Output1" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="65c2e2d8-2234-48bb-aec8-fbdcb98be83d" />
+                  <objectFlowTargets>
+                    <objectFlow Id="6f414b48-4045-4cbd-947c-ca50968b3f32" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <opaqueActionMoniker Id="e4fa426c-0e11-4af7-900b-de3956cdcbc5" LastKnownName="Closed" />
+                      <elementDefinition Id="d155e461-4ba0-4afc-88f9-b07ba4332de7" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="240e8c8c-1e28-40c1-aa19-ea81bbdbaafd" name="2147483647" value="2147483647">
+                      <elementDefinition Id="0390be33-a532-4a27-ad2c-f333953fb993" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+            </pins>
+          </opaqueAction>
+          <opaqueAction Id="e129ef85-ec6a-4953-9cc3-8c69f27e8f7d" name="Rejected" isLeaf="false">
+            <elementDefinition Id="94b0b5c6-e329-4a42-9036-a81bca15b2ad" />
+            <pins>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="2bed77cc-03a5-4c19-81d0-b876681b24e1" name="Output1" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="507471f6-b3a5-43c4-8591-f55544f7a331" />
+                  <objectFlowTargets>
+                    <objectFlow Id="5e5d6027-7122-4f94-8033-0484af29a88e" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <opaqueActionMoniker Id="e4fa426c-0e11-4af7-900b-de3956cdcbc5" LastKnownName="Closed" />
+                      <elementDefinition Id="4972c28c-ac2d-4446-9a76-898b63f2d180" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="878c8fd2-721c-4548-a7df-6444d72672e2" name="2147483647" value="2147483647">
+                      <elementDefinition Id="572c146a-bb2b-4910-9d0e-139fb900a5a0" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+            </pins>
+          </opaqueAction>
+          <opaqueAction Id="e4fa426c-0e11-4af7-900b-de3956cdcbc5" name="Closed" isLeaf="false">
+            <elementDefinition Id="ce8de07e-d73c-404b-b75e-d340bf19f6b9" />
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="fb1f191c-cdf6-4640-9a66-b42fd0c68a25" name="UmlModeling">
+    <elementDefinition Id="963d58f1-b73d-4477-b7c4-f083fc22d737" />
+  </package>
+</activityRootModel>

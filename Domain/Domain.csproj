@@ -48,7 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="States\ApprovedClaim.cs" />
     <Compile Include="Claim.cs" />
+    <Compile Include="States\ClaimState.cs" />
+    <Compile Include="States\ClosedClaim.cs" />
+    <Compile Include="States\NewClaim.cs" />
+    <Compile Include="States\OpenedClaim.cs" />
+    <Compile Include="States\RejectedClaim.cs" />
+    <Compile Include="States\RequestingApproval.cs" />
     <Compile Include="Shared\ClaimException.cs" />
     <Compile Include="ClaimId.cs" />
     <Compile Include="ClaimNo.cs" />
@@ -84,6 +91,7 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="States\ClaimStatesDiagram.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
