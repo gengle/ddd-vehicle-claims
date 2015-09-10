@@ -38,6 +38,11 @@ namespace Domain
             return $"{Amount:C2}";
         }
 
+        public static implicit operator decimal (Payout payout)  // explicit byte to digit conversion operator
+        {
+            return payout.Amount;
+        }
+
         public static bool operator >(Payout left, Payout right)
         {
             return left.Amount > right.Amount;
@@ -54,6 +59,7 @@ namespace Domain
         }
 
         public decimal Amount { get; private set; }
+        public static Payout Zilch { get; } = new Payout(0m);
 
         public bool HasValue()
         {

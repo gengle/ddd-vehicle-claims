@@ -28,6 +28,11 @@ namespace Domain.Infrastructure.Data
             //noop
         }
 
+        public IQueryable<Claim> GetAll()
+        {
+            return _claims.AsQueryable();
+        }
+
         bool disposed = false;
         public void Dispose()
         {

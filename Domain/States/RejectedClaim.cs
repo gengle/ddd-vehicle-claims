@@ -1,3 +1,5 @@
+using System;
+
 namespace Domain.States
 {
     public class RejectedClaim : ClaimState
@@ -6,7 +8,7 @@ namespace Domain.States
         {
         }
 
-        public override void Close()
+        public override void Close(Action action)
         {
             Context._state = new ClosedClaim(this.Context);
         }

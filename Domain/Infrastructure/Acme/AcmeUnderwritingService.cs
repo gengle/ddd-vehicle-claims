@@ -7,5 +7,10 @@
         {
             //do nothing
         }
+
+        public void CancelPayout(PolicyNo policyNo, Payout payout)
+        {
+            //do nothing
+        }
     }
 }

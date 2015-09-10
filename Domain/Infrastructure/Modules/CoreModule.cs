@@ -11,8 +11,8 @@ namespace Domain.Infrastructure.Modules
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<AcmeFairMarketValueService>()
-                .As<IFairMarketValueService>();
+            builder.RegisterType<AcmeVehicleService>()
+                .As<IVehicleService>();
             builder.RegisterType<AcmePolicyService>()
                 .As<IPolicyService>();
             builder.RegisterType<AcmeUnderwritingService>()

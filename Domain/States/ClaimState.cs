@@ -1,4 +1,5 @@
 using System;
+using System.Linq.Expressions;
 using Domain.Services;
 using Domain.Shared;
 
@@ -32,17 +33,17 @@ namespace Domain.States
             throw new ClaimException("Action not allowed at this time");
         }
 
-        public virtual void Close()
-        {
-            throw new ClaimException("Action not allowed at this time");
-        }
-
-        public virtual Claim ProcessPayout()
+        public virtual void Close(Action action)
         {
             throw new ClaimException("Action not allowed at this time");
         }
 
         public virtual void AssignPolicy(Action action)
+        {
+            throw new ClaimException("Action not allowed at this time");
+        }
+
+        public void ReOpen(Action action)
         {
             throw new ClaimException("Action not allowed at this time");
         }

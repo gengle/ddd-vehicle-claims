@@ -9,5 +9,6 @@ namespace Domain.Services
     public interface IUnderwritingService
     {
         void ProcessPayout(PolicyNo policy, Payout payout);
+        void CancelPayout(PolicyNo policyNo, Payout payout);
     }
 }

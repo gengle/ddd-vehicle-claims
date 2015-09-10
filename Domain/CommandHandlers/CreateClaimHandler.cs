@@ -1,8 +1,8 @@
-using Domain.Infrastructure;
+using Domain.Commands;
 using Domain.Services;
 using Domain.Shared;
 
-namespace Domain.Commands.Handlers
+namespace Domain.CommandHandlers
 {
     public class CreateClaimHandler : ICommandHandler<CreateClaimCommand>
     {

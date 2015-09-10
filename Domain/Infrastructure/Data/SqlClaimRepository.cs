@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Domain.Infrastructure.Data
 {
@@ -11,6 +12,11 @@ namespace Domain.Infrastructure.Data
         }
 
         public void AddOrUpdate(Claim claim)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IQueryable<Claim> GetAll()
         {
             throw new NotImplementedException();
         }

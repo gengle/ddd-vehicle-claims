@@ -10,5 +10,6 @@ namespace Domain.Repositories
     {
         Claim GetById(ClaimId id);
         void AddOrUpdate(Claim claim);
+        IQueryable<Claim> GetAll();
     }
 }

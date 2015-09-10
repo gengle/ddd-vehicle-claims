@@ -10,6 +10,7 @@ using Domain.Infrastructure;
 using Domain.Infrastructure.Modules;
 using Domain.Repositories;
 using Domain.Services;
+using Domain.States;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests
@@ -34,89 +35,103 @@ namespace Tests
         }
 
         [TestMethod]
-        public void CreateClaim_PolicyNo_AreEqual()
+        public void CreateClaim()
         {
             var id = ClaimId.NewId();
-            var expected = "123";
+            _unitUnderTest.Dispatch(new CreateClaimCommand() { Id = id});
 
-            _unitUnderTest.Dispatch(new CreateClaimCommand()
-            {
-                Id = id.ToString(),
-                PolicyNo = expected
-            });
+            var actual = _claimRepository.GetAll().First();
 
-            var actual = _claimRepository.GetById(id).PolicyNo.Value;
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(id, actual.Id);
         }
 
         [TestMethod]
-        public void CreateClaim_ClaimNo_AreNotEmpty()
+        public void CreateClaim_ThenAssignVehicle()
         {
             var id = ClaimId.NewId();
+            _unitUnderTest.Dispatch(new CreateClaimCommand() { Id = id });
 
-            _unitUnderTest.Dispatch(new CreateClaimCommand()
+            var expected = new Vehicle(make:"Ford", model:"Mustang", vin:"12345", year:2015);
+            _unitUnderTest.Dispatch(new AssignVehicleCommand()
             {
-                Id = id.ToString(),
-                PolicyNo = "123"
+                Id = id,
+                Vehicle = expected
             });
+
+            var actual = _claimRepository.GetAll().First();
+
+            Assert.AreEqual(expected, actual.Vehicle);
+        }
+
+        [TestMethod]
+        public void AssignVehicle_ThenRejectPayout()
+        {
+            var id = ClaimId.NewId();
+            _unitUnderTest.Dispatch(new CreateClaimCommand() { Id = id });
+            _unitUnderTest.Dispatch(new AssignVehicleCommand()
+            {
+                Id = id,
+                Vehicle = new Vehicle(make: "Ford", model: "Mustang", vin: "12345", year: 2015)
+            });
+            _unitUnderTest.Dispatch(new RejectPayoutCommand() { Id = id});
 
             var actual = _claimRepository.GetById(id);
-            Assert.AreNotEqual(ClaimNo.Empty, actual.ClaimNo);
+
+            Assert.AreEqual(Payout.Zilch, actual.Payout);
         }
 
         [TestMethod]
-        public void AssignVehicle_Make_AreEqual()
+        public void RejectPayout_ThenCloseClaim()
         {
             var id = ClaimId.NewId();
-
-            _unitUnderTest.Dispatch(new CreateClaimCommand()
-            {
-                Id = id.ToString(),
-                PolicyNo = "123"
-            });
-
+            _unitUnderTest.Dispatch(new CreateClaimCommand() { Id = id });
             _unitUnderTest.Dispatch(new AssignVehicleCommand()
             {
-                Id = id.ToString(),
-                Make="Ford",
-                Model="Mustang",
-                Vin="1Z2",
-                Year = 2015
+                Id = id,
+                Vehicle = new Vehicle(make: "Ford", model: "Mustang", vin: "12345", year: 2015)
             });
+            _unitUnderTest.Dispatch(new RejectPayoutCommand() { Id = id });
+            _unitUnderTest.Dispatch(new CloseClaimCommand() { Id = id });
 
-            var actual = _claimRepository.GetById(id).Units.ElementAt(0);
-            Assert.AreEqual("Ford", actual.Vehicle.Make);
+            var actual = _claimRepository.GetById(id);
+
+            Assert.IsInstanceOfType(actual._state, typeof(ClosedClaim));
         }
 
         [TestMethod]
-        public void ProcessPayout()
+        public void AssignVehicle_ThenApprovePayout()
         {
             var id = ClaimId.NewId();
-
-            _unitUnderTest.Dispatch(new CreateClaimCommand()
-            {
-                Id = id.ToString(),
-                PolicyNo = "123"
-            });
-
+            _unitUnderTest.Dispatch(new CreateClaimCommand() { Id = id });
             _unitUnderTest.Dispatch(new AssignVehicleCommand()
             {
-                Id = id.ToString(),
-                Make = "Ford",
-                Model = "Mustang",
-                Vin = "1Z2",
-                Year = 2015
+                Id = id,
+                Vehicle = new Vehicle(make: "Ford", model: "Mustang", vin: "12345", year: 2015)
             });
+            var expected = 5m;
+            _unitUnderTest.Dispatch(new ApprovePayoutCommand() { Id = id, Amount =expected});
 
-            var expected = 5.00m;
-            _unitUnderTest.Dispatch(new ProcessPayoutCommand
+            var actual = _claimRepository.GetById(id);
+
+            Assert.AreEqual(expected, actual.Payout);
+        }
+
+        [TestMethod]
+        public void ApprovePayout_ThenCloseClaim()
+        {
+            var id = ClaimId.NewId();
+            _unitUnderTest.Dispatch(new CreateClaimCommand() { Id = id });
+            _unitUnderTest.Dispatch(new AssignVehicleCommand()
             {
-                Id = id.ToString(),
-                Amount =expected
+                Id = id,
+                Vehicle = new Vehicle(make: "Ford", model: "Mustang", vin: "12345", year: 2015)
             });
+            _unitUnderTest.Dispatch(new ApprovePayoutCommand() { Id = id, Amount = 5m });
+            _unitUnderTest.Dispatch(new CloseClaimCommand() { Id = id});
 
-            var actual = _claimRepository.GetById(id).Payouts.Sum(x=>x.Amount);
-            Assert.AreEqual(expected, actual);
+            var actual = _claimRepository.GetById(id);
+
+            Assert.IsInstanceOfType(actual._state, typeof(ClosedClaim));
         }
     }
 }

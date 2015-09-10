@@ -12,7 +12,6 @@ namespace Domain
         {
             Value = value;
         }
-
         public ClaimId()
         {
             
@@ -43,6 +42,11 @@ namespace Domain
         public override int GetHashCode()
         {
             return Value.GetHashCode();
+        }
+
+        public static implicit operator string(ClaimId id)  // explicit byte to digit conversion operator
+        {
+            return id.ToString();
         }
 
         public static bool operator ==(ClaimId left, ClaimId right)

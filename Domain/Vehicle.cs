@@ -16,6 +16,7 @@ namespace Domain
         public string Model { get; }
         public int? Year { get; }
         public string Vin { get; }
+        public static Vehicle Empty { get; } = new Vehicle();
 
         public bool Equals(Vehicle other)
         {

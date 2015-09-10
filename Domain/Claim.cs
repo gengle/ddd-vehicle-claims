@@ -14,7 +14,7 @@ namespace Domain
 {
     public class Claim: IAggregateRoot<ClaimId>, IEquatable<Claim>
     {
-        internal ClaimState _state;
+        public ClaimState _state;
 
         #region Properties
         public ClaimId Id { get; }
@@ -27,14 +27,10 @@ namespace Domain
 
         public ClaimNo ClaimNo { get; set; } = Domain.ClaimNo.Empty;
 
-        public HashSet<Unit> Units { get; set; } = new HashSet<Unit>();
-        public HashSet<Payout> Payouts { get; set; } = new HashSet<Payout>();
+        public Payout Payout { get; set; } = Domain.Payout.Zilch;
 
-        public Payout PendingPayout => new Payout(this.Units.Sum(x => x.MonetaryAssessment)
-                                                  - this.Payouts.Sum(x => x.Amount));
-        
         public PolicyNo PolicyNo { get; set; } = Domain.PolicyNo.Empty;
-        
+        public Vehicle Vehicle { get; set; } = Domain.Vehicle.Empty;
 
         #endregion
 
@@ -91,51 +87,48 @@ namespace Domain
         }
 
         public void AssignVehicle(Vehicle vehicle,
-            Services.IFairMarketValueService fairMarketValueService)
+            Services.IVehicleService vehicleService)
         {
             _state.AssignVehicle(() =>
             {
                 Guard.NotNull(() => vehicle, vehicle);
-                Guard.NotNull(() => fairMarketValueService, fairMarketValueService);
+                Guard.NotNull(() => vehicleService, vehicleService);
 
-                if (!Units.Any(x => x.Vehicle.Equals(vehicle)))
-                {
-                    var unit = Unit.Create(this)
-                        .WithVehicle(vehicle)
-                        .WithMonetaryAssessment(fairMarketValueService.GetValue(vehicle));
-
-                    Units.Add(unit);
-                }
+                vehicleService.ValidateVehicle(vehicle);
+                this.Vehicle = vehicle;
             });
         }
 
-        public void OnProcessPayout(Payout payout, IUnderwritingService underwritingService)
-        {
-            Guard.NotNull(() => underwritingService, underwritingService);
-            if (!payout.HasValue())
-                throw new ClaimException("You are not allowed to process a payout for no money");
-
-            if (payout > PendingPayout)
-                throw new ClaimException($"{payout} is greater than pending {PendingPayout}");
-
-            underwritingService.ProcessPayout(this.PolicyNo, payout);
-
-            Payouts.Add(payout);
-        }
-        public Claim ProcessPayout(Payout payout, IUnderwritingService underwritingService)
-        {
-            return this;
-        }
-        #endregion
-
         public void ApprovePayout(Payout payout, IUnderwritingService underwritingService)
         {
-            _state.Approve(() => Expression.Empty());
+            Guard.NotNull(() => payout, payout);
+            Guard.NotNull(() => underwritingService, underwritingService);
+
+            _state.Approve(() =>
+            {
+                underwritingService.ProcessPayout(this.PolicyNo, payout);
+                this.Payout = payout;
+            });
         }
 
         public void RejectPayout(Payout payout, IUnderwritingService underwritingService)
         {
-            _state.Reject(() => Expression.Empty());
+            _state.Reject(() =>
+            {
+                underwritingService.CancelPayout(this.PolicyNo, this.Payout);
+                this.Payout = Payout.Zilch;
+            });
+        }
+        #endregion
+
+        public void Reopen()
+        {
+            _state.ReOpen(() => Expression.Empty());
+        }
+
+        public void Close()
+        {
+            _state.Close(()=>Expression.Empty());
         }
     }
 }

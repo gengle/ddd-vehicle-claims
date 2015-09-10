@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Services
 {
-    public interface IFairMarketValueService
+    public interface IVehicleService
     {
-        decimal GetValue(Vehicle vehicle);
+        void ValidateVehicle(Vehicle vehicle);
     }
 }

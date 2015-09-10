@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="AutofacCommandDispatcherTests.cs" />
     <Compile Include="ClaimTests.cs" />
+    <Compile Include="PayoutTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

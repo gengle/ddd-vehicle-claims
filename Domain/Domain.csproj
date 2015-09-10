@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\CloseClaimHandler.cs" />
+    <Compile Include="CommandHandlers\RejectPayoutHandler.cs" />
+    <Compile Include="CommandHandlers\ReopenClaimHandler.cs" />
+    <Compile Include="Commands\CloseClaimCommand.cs" />
+    <Compile Include="Commands\RejectPayoutCommand.cs" />
+    <Compile Include="Commands\ReopenClaimCommand.cs" />
     <Compile Include="States\ApprovedClaim.cs" />
     <Compile Include="Claim.cs" />
     <Compile Include="States\ClaimState.cs" />
@@ -61,22 +67,22 @@
     <Compile Include="ClaimNo.cs" />
     <Compile Include="Commands\AssignVehicleCommand.cs" />
     <Compile Include="Commands\CreateClaimCommand.cs" />
-    <Compile Include="Commands\Handlers\AssignVehicleHandler.cs" />
-    <Compile Include="Commands\Handlers\CreateClaimHandler.cs" />
+    <Compile Include="CommandHandlers\AssignVehicleHandler.cs" />
+    <Compile Include="CommandHandlers\CreateClaimHandler.cs" />
     <Compile Include="Infrastructure\Acme\AcmeUnderwritingService.cs" />
     <Compile Include="Infrastructure\AutofacCommandDispatcher.cs" />
     <Compile Include="Shared\ICommand.cs" />
     <Compile Include="Services\ICommandDispatcher.cs" />
     <Compile Include="Shared\ICommandHandler.cs" />
-    <Compile Include="Commands\Handlers\ProcessPayoutHandler.cs" />
-    <Compile Include="Commands\ProcessPayoutCommand.cs" />
+    <Compile Include="CommandHandlers\ApprovePayoutHandler.cs" />
+    <Compile Include="Commands\ApprovePayoutCommand.cs" />
     <Compile Include="Shared\IAggregateRoot.cs" />
     <Compile Include="Infrastructure\Acme\AcmePolicyService.cs" />
     <Compile Include="Infrastructure\Data\MemoryClaimRepository.cs" />
     <Compile Include="Infrastructure\Modules\CommandModule.cs" />
     <Compile Include="Infrastructure\Modules\CoreModule.cs" />
     <Compile Include="Shared\Guard.cs" />
-    <Compile Include="Infrastructure\Acme\AcmeFairMarketValueService.cs" />
+    <Compile Include="Infrastructure\Acme\AcmeVehicleService.cs" />
     <Compile Include="Infrastructure\Data\SqlClaimRepository.cs" />
     <Compile Include="Payout.cs" />
     <Compile Include="PolicyNo.cs" />
@@ -84,8 +90,7 @@
     <Compile Include="Repositories\IClaimRepository.cs" />
     <Compile Include="Services\IUnderwritingService.cs" />
     <Compile Include="Services\IPolicyService.cs" />
-    <Compile Include="Services\IFairMarketValueService.cs" />
-    <Compile Include="Unit.cs" />
+    <Compile Include="Services\IVehicleService.cs" />
     <Compile Include="Vehicle.cs" />
   </ItemGroup>
   <ItemGroup />

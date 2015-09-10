@@ -3,7 +3,7 @@ using Domain.Shared;
 
 namespace Domain.Commands
 {
-    public class ProcessPayoutCommand : ICommand
+    public class ApprovePayoutCommand : ICommand
     {
         public string Id { get; set; }
         public decimal Amount { get; set; }

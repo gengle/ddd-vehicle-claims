@@ -1,3 +1,5 @@
+using System;
+
 namespace Domain.States
 {
     public class ApprovedClaim : ClaimState
@@ -6,8 +8,9 @@ namespace Domain.States
         {
         }
 
-        public override void Close()
+        public override void Close(Action action)
         {
+            action();
             Context._state = new ClosedClaim(this.Context);
         }
     }

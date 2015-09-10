@@ -14,8 +14,9 @@ namespace Domain.States
             Context._state = new RequestingApproval(this.Context);
         }
 
-        public override void Close()
+        public override void Close(Action action)
         {
+            action();
             Context._state = new ClosedClaim(this.Context);
         }
     }
