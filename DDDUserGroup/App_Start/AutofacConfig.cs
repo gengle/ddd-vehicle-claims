@@ -25,7 +25,7 @@ namespace DDDUserGroup.App_Start
             builder.RegisterSource(new ViewRegistrationSource());
 
             // Register our Data dependencies
-            builder.RegisterModule(new CoreModule() { UseMemoryMode = true});
+            builder.RegisterModule(new CoreModule() { UseFakeWorkspace = false});
             builder.RegisterModule(new CommandModule());
 
             var container = builder.Build();

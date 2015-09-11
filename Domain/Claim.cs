@@ -130,5 +130,18 @@ namespace Domain
         {
             _state.Close(()=>Expression.Empty());
         }
+
+        public ClaimMemento GetMemento(ClaimMemento memento = null)
+        {
+            var m = memento ?? new ClaimMemento();
+            if (m.Id == default(Guid))
+                m.Id = this.Id;
+            m.PolicyNo = this.PolicyNo;
+            m.ClaimNo = this.ClaimNo;
+            m.Payout = this.Payout;
+            m.Vehicle = this.Vehicle;
+            m.ClaimState = this._state.GetType().ToString();
+            return m;
+        }
     }
 }

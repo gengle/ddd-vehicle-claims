@@ -1,13 +1,17 @@
-﻿using Autofac;
+﻿using System.IO;
+using Autofac;
+using Domain.Factories;
 using Domain.Infrastructure.Acme;
-using Domain.Infrastructure.Data;
+using Domain.Infrastructure.Persistance;
+using Domain.Infrastructure.Persistance.EntityFramework;
 using Domain.Services;
 
 namespace Domain.Infrastructure.Modules
 {
     public class CoreModule: Module
     {
-        public bool UseMemoryMode { get; set; }
+        public bool UseFakeWorkspace { get; set; }
+        public string FakeWorkspaceFilePath { get; set; }
 
         protected override void Load(ContainerBuilder builder)
         {
@@ -18,18 +22,22 @@ namespace Domain.Infrastructure.Modules
             builder.RegisterType<AcmeUnderwritingService>()
                 .As<IUnderwritingService>();
 
-            if (UseMemoryMode)
+            builder.RegisterType<ClaimFactory>().AsSelf();
+            if (UseFakeWorkspace)
             {
-                builder.RegisterType<MemoryClaimRepository>()
-                    .As<Repositories.IClaimRepository>()
+                builder.Register(c => new FakeWorkspace(FakeWorkspaceFilePath ?? Path.GetTempFileName()))
+                    .As<IWorkspace>()
                     .InstancePerLifetimeScope();
             }
             else
             {
-                builder.RegisterType<SqlClaimRepository>()
-                    .As<Repositories.IClaimRepository>()
+                builder.Register(c => new EFWorkspace(new EFContext()))
+                    .As<IWorkspace>()
                     .InstancePerLifetimeScope();
             }
+            
+            builder.RegisterType<ClaimRepository>()
+                .As<Repositories.IClaimRepository>();
         }
     }
 }

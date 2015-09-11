@@ -38,6 +38,11 @@ namespace Domain
             return Equals(left, right);
         }
 
+        public static implicit operator string (ClaimNo claimNo)  // explicit byte to digit conversion operator
+        {
+            return claimNo?.Value;
+        }
+
         public static bool operator !=(ClaimNo left, ClaimNo right)
         {
             return !Equals(left, right);

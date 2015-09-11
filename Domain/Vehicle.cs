@@ -1,8 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain
 {
-    public sealed class Vehicle : IEquatable<Vehicle>
+    public class Vehicle : IEquatable<Vehicle>
     {
         public Vehicle(string make = null, string model = null, int? year=null, string vin=null)
         {
@@ -12,10 +13,14 @@ namespace Domain
             Vin = vin;
         }
 
-        public string Make { get; }
-        public string Model { get; }
-        public int? Year { get; }
-        public string Vin { get; }
+        public Vehicle()
+        {
+            
+        }
+        public string Make { get; set; }
+        public string Model { get; set; }
+        public int? Year { get; set; }
+        public string Vin { get; set; }
         public static Vehicle Empty { get; } = new Vehicle();
 
         public bool Equals(Vehicle other)

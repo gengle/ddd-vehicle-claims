@@ -34,11 +34,20 @@
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -48,12 +57,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClaimMemento.cs" />
+    <Compile Include="Factories\ClaimFactory.cs" />
     <Compile Include="CommandHandlers\CloseClaimHandler.cs" />
     <Compile Include="CommandHandlers\RejectPayoutHandler.cs" />
     <Compile Include="CommandHandlers\ReopenClaimHandler.cs" />
     <Compile Include="Commands\CloseClaimCommand.cs" />
     <Compile Include="Commands\RejectPayoutCommand.cs" />
     <Compile Include="Commands\ReopenClaimCommand.cs" />
+    <Compile Include="Infrastructure\Persistance\EntityFramework\EFContext.cs" />
+    <Compile Include="Infrastructure\Persistance\EntityFramework\EFWorkspace.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Infrastructure\Persistance\IdentityMap.cs" />
+    <Compile Include="Infrastructure\Persistance\FakeWorkspace.cs" />
+    <Compile Include="Services\IWorkspace.cs" />
     <Compile Include="States\ApprovedClaim.cs" />
     <Compile Include="Claim.cs" />
     <Compile Include="States\ClaimState.cs" />
@@ -78,12 +95,11 @@
     <Compile Include="Commands\ApprovePayoutCommand.cs" />
     <Compile Include="Shared\IAggregateRoot.cs" />
     <Compile Include="Infrastructure\Acme\AcmePolicyService.cs" />
-    <Compile Include="Infrastructure\Data\MemoryClaimRepository.cs" />
     <Compile Include="Infrastructure\Modules\CommandModule.cs" />
     <Compile Include="Infrastructure\Modules\CoreModule.cs" />
     <Compile Include="Shared\Guard.cs" />
     <Compile Include="Infrastructure\Acme\AcmeVehicleService.cs" />
-    <Compile Include="Infrastructure\Data\SqlClaimRepository.cs" />
+    <Compile Include="Infrastructure\Persistance\ClaimRepository.cs" />
     <Compile Include="Payout.cs" />
     <Compile Include="PolicyNo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,6 +111,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="States\ClaimStatesDiagram.cd" />
   </ItemGroup>

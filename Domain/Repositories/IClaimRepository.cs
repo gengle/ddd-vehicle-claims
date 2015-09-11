@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Domain.Repositories
 {
-    public interface IClaimRepository: IDisposable
+    public interface IClaimRepository
     {
         Claim GetById(ClaimId id);
         void AddOrUpdate(Claim claim);
-        IQueryable<Claim> GetAll();
+        IQueryable<ClaimMemento> GetAll();
     }
 }
