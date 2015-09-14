@@ -25,7 +25,7 @@ namespace Tests
         public void Init()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterModule(new CoreModule() { UseMemoryMode = true});
+            builder.RegisterModule(new CoreModule() { UseFakeWorkspace = true});
             builder.RegisterModule(new CommandModule());
 
             var container = builder.Build();

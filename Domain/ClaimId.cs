@@ -49,6 +49,11 @@ namespace Domain
             return id.ToString();
         }
 
+        public static implicit operator Guid (ClaimId id)  // explicit byte to digit conversion operator
+        {
+            return id.Value;
+        }
+
         public static bool operator ==(ClaimId left, ClaimId right)
         {
             return Equals(left, right);
