@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain;
 using Domain.Factories;
-using Domain.Infrastructure.Persistance;
-using Domain.Infrastructure.Persistance.EntityFramework;
 using Domain.Repositories;
 using Domain.Services;
+using Infrastructure.Persistance.EntityFramework;
+using Infrastructure.Persistance.Repositories;
+using Infrastructure.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 

@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Messaging.Commands;
 using Autofac;
 using Domain;
-using Domain.Commands;
-using Domain.Infrastructure;
-using Domain.Infrastructure.Modules;
 using Domain.Repositories;
 using Domain.Services;
 using Domain.States;
+using Infrastructure.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests
@@ -25,8 +26,13 @@ namespace Tests
         public void Init()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterModule(new CoreModule() { UseFakeWorkspace = true});
-            builder.RegisterModule(new CommandModule());
+            builder.RegisterModule(new Application.Composition.CoreModule());
+            builder.RegisterModule(new Application.Composition.MessagingModule());
+            builder.RegisterModule(new Infrastructure.Persistance.PersistenceModule()
+            {
+                UseFakeWorkspace = true,
+                ConnectionStringOrName = Path.GetTempFileName()
+            });
 
             var container = builder.Build();
 

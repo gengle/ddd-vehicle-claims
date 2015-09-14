@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E8844047-FB4C-4A19-8DF2-CED86F89CF7C}</ProjectGuid>
+    <ProjectGuid>{76259089-7008-449B-8F8E-8E5275A1D578}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Domain</RootNamespace>
-    <AssemblyName>Domain</AssemblyName>
+    <RootNamespace>Application</RootNamespace>
+    <AssemblyName>Application</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,8 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,37 +44,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClaimMemento.cs" />
-    <Compile Include="Factories\ClaimFactory.cs" />
-    <Compile Include="States\ApprovedClaim.cs" />
-    <Compile Include="Claim.cs" />
-    <Compile Include="States\ClaimState.cs" />
-    <Compile Include="States\ClosedClaim.cs" />
-    <Compile Include="States\NewClaim.cs" />
-    <Compile Include="States\OpenedClaim.cs" />
-    <Compile Include="States\RejectedClaim.cs" />
-    <Compile Include="States\RequestingApproval.cs" />
-    <Compile Include="ClaimId.cs" />
-    <Compile Include="ClaimNo.cs" />
-    <Compile Include="Payout.cs" />
-    <Compile Include="PolicyNo.cs" />
+    <Compile Include="Messaging\CommandHandlers\ApprovePayoutHandler.cs" />
+    <Compile Include="Messaging\CommandHandlers\AssignVehicleHandler.cs" />
+    <Compile Include="Messaging\CommandHandlers\CloseClaimHandler.cs" />
+    <Compile Include="Messaging\CommandHandlers\CreateClaimHandler.cs" />
+    <Compile Include="Messaging\CommandHandlers\RejectPayoutHandler.cs" />
+    <Compile Include="Messaging\CommandHandlers\ReopenClaimHandler.cs" />
+    <Compile Include="Messaging\Commands\ApprovePayoutCommand.cs" />
+    <Compile Include="Messaging\Commands\AssignVehicleCommand.cs" />
+    <Compile Include="Messaging\Commands\CloseClaimCommand.cs" />
+    <Compile Include="Messaging\Commands\CreateClaimCommand.cs" />
+    <Compile Include="Messaging\Commands\RejectPayoutCommand.cs" />
+    <Compile Include="Messaging\Commands\ReopenClaimCommand.cs" />
+    <Compile Include="Services\AcmePolicyService.cs" />
+    <Compile Include="Services\AcmeUnderwritingService.cs" />
+    <Compile Include="Services\AcmeVehicleService.cs" />
+    <Compile Include="Composition\MessagingModule.cs" />
+    <Compile Include="Composition\CoreModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IClaimRepository.cs" />
-    <Compile Include="Services\IUnderwritingService.cs" />
-    <Compile Include="Services\IPolicyService.cs" />
-    <Compile Include="Services\IVehicleService.cs" />
-    <Compile Include="Vehicle.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{6e586a1d-f4cc-45e4-bf0a-382803f25854}</Project>
       <Name>Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{e8844047-fb4c-4a19-8df2-ced86f89cf7c}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{a667e4d9-b3d4-46b9-8186-ecd5ab210dc1}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="States\ClaimStatesDiagram.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

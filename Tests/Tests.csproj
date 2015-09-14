@@ -75,9 +75,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj">
+      <Project>{76259089-7008-449b-8f8e-8e5275a1d578}</Project>
+      <Name>Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{6e586a1d-f4cc-45e4-bf0a-382803f25854}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{e8844047-fb4c-4a19-8df2-ced86f89cf7c}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{A667E4D9-B3D4-46B9-8186-ECD5AB210DC1}</Project>
+      <Name>Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

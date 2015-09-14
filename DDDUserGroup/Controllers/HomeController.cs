@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Application.Messaging.Commands;
 using Domain;
-using Domain.Commands;
 using Domain.Repositories;
 using Domain.Services;
+using Infrastructure.Services;
 
 namespace DDDUserGroup.Controllers
 {

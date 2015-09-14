@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Application.Composition;
 using Autofac;
 using Autofac.Integration.Mvc;
-using Domain.Infrastructure.Modules;
 
 namespace DDDUserGroup.App_Start
 {
@@ -25,8 +25,12 @@ namespace DDDUserGroup.App_Start
             builder.RegisterSource(new ViewRegistrationSource());
 
             // Register our Data dependencies
-            builder.RegisterModule(new CoreModule() { UseFakeWorkspace = false});
-            builder.RegisterModule(new CommandModule());
+            builder.RegisterModule(new Application.Composition.CoreModule());
+            builder.RegisterModule(new Application.Composition.MessagingModule());
+            builder.RegisterModule(new Infrastructure.Persistance.PersistenceModule()
+            {
+                ConnectionStringOrName = "name=ClaimConnectionString"
+            });
 
             var container = builder.Build();
 

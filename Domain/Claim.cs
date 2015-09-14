@@ -5,9 +5,8 @@ using System.Linq.Expressions;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
-using Domain.Infrastructure;
+using Core;
 using Domain.Services;
-using Domain.Shared;
 using Domain.States;
 
 namespace Domain
@@ -76,7 +75,7 @@ namespace Domain
                 Guard.NotNull(() => policyService, policyService);
 
                 if (!policyNo.Equals(PolicyNo) && !this.PolicyNo.IsEmpty())
-                    throw new ClaimException("Unable to change Policy once set");
+                    throw new DomainException("Unable to change Policy once set");
 
                 if (!policyNo.Equals(PolicyNo))
                 {
