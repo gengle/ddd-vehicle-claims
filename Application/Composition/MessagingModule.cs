@@ -11,7 +11,9 @@ namespace Application.Composition
                
             builder.RegisterType<Infrastructure.Services.AutofacCommandDispatcher>()
                 .As<Infrastructure.Services.ICommandDispatcher>();
-            
+
+            builder.RegisterType<Services.RoutingRelationService>().AsSelf();
+
         }
     }
 }

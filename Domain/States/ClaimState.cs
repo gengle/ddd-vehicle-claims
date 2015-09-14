@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using Core;
 using Domain.Services;
@@ -43,7 +44,7 @@ namespace Domain.States
             throw new DomainException("Action not allowed at this time");
         }
 
-        public void ReOpen(Action action)
+        public virtual void ReOpen(Action action)
         {
             throw new DomainException("Action not allowed at this time");
         }

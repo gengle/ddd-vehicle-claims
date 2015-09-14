@@ -10,6 +10,7 @@ namespace Domain.States
 
         public override void Close(Action action)
         {
+            action();
             Context._state = new ClosedClaim(this.Context);
         }
     }

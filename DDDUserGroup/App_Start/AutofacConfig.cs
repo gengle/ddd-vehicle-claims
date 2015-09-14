@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
+using System.Reflection;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using Application.Composition;
 using Autofac;
 using Autofac.Integration.Mvc;
+using Autofac.Integration.WebApi;
 
 namespace DDDUserGroup.App_Start
 {
@@ -32,9 +36,14 @@ namespace DDDUserGroup.App_Start
                 ConnectionStringOrName = "name=ClaimConnectionString"
             });
 
+            var config = GlobalConfiguration.Configuration;
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+            builder.RegisterWebApiFilterProvider(config);
+
             var container = builder.Build();
 
             // Set MVC DI resolver to use our Autofac container
+            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }

@@ -2,6 +2,7 @@ using System;
 
 namespace Domain
 {
+    [Serializable]
     public class ClaimMemento
     {
         public Guid Id { get; set; }
