@@ -18,10 +18,11 @@ namespace Application.Services
 
         public void Dispatch<TCommand>(TCommand command) where TCommand : ICommand
         {
-            var handler = this._context.Resolve<ICommandHandler<TCommand>>();
+            var type = typeof (ICommandHandler<>).MakeGenericType(command.GetType());
+            dynamic handler = this._context.Resolve(type);
             var claim = _claimRepository.GetById(ClaimId.FromString(command.Id));
 
-            handler.Handle(command, claim);
+            handler.Handle((dynamic) command, claim);
             _claimRepository.AddOrUpdate(claim);
         }
     }
