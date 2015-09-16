@@ -1,6 +1,6 @@
 ﻿using Core;
 
-namespace Infrastructure.Services
+namespace Application.Services
 {
     public interface ICommandDispatcher
     {

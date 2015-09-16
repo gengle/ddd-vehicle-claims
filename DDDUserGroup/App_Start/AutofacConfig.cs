@@ -30,8 +30,9 @@ namespace DDDUserGroup.App_Start
 
             // Register our Data dependencies
             builder.RegisterModule(new Application.Composition.CoreModule());
+            builder.RegisterModule(new Application.Composition.ApplicationModule());
             builder.RegisterModule(new Application.Composition.MessagingModule());
-            builder.RegisterModule(new Infrastructure.Persistance.PersistenceModule()
+            builder.RegisterModule(new PersistenceModule()
             {
                 ConnectionStringOrName = "name=ClaimConnectionString"
             });

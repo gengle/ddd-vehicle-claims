@@ -34,6 +34,10 @@
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Composition\ApplicationModule.cs" />
+    <Compile Include="Composition\PersistenceModule.cs" />
     <Compile Include="Messaging\CommandHandlers\ApprovePayoutHandler.cs" />
     <Compile Include="Messaging\CommandHandlers\AssignVehicleHandler.cs" />
     <Compile Include="Messaging\CommandHandlers\CloseClaimHandler.cs" />
@@ -56,13 +62,19 @@
     <Compile Include="Messaging\Commands\CreateClaimCommand.cs" />
     <Compile Include="Messaging\Commands\RejectPayoutCommand.cs" />
     <Compile Include="Messaging\Commands\ReopenClaimCommand.cs" />
+    <Compile Include="RoutingSlip.cs" />
     <Compile Include="Services\AcmePolicyService.cs" />
     <Compile Include="Services\AcmeUnderwritingService.cs" />
     <Compile Include="Services\AcmeVehicleService.cs" />
     <Compile Include="Composition\MessagingModule.cs" />
     <Compile Include="Composition\CoreModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AutofacCommandDispatcher.cs" />
+    <Compile Include="Services\ClaimReader.cs" />
+    <Compile Include="Services\ICommandDispatcher.cs" />
+    <Compile Include="Services\ICommandHandler.cs" />
     <Compile Include="Services\RoutingRelationService.cs" />
+    <Compile Include="ViewModels\ClaimView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

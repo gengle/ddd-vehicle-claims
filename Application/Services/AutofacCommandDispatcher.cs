@@ -3,7 +3,7 @@ using Core;
 using Domain;
 using Domain.Repositories;
 
-namespace Infrastructure.Services
+namespace Application.Services
 {
     public class AutofacCommandDispatcher : ICommandDispatcher
     {

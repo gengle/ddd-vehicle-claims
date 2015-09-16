@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using Autofac;
 using Infrastructure.Persistance.EntityFramework;
 using Infrastructure.Persistance.Fakes;
 using Infrastructure.Services;
 
-namespace Infrastructure.Persistance
+namespace Application.Composition
 {
     public class PersistenceModule: Autofac.Module
     {

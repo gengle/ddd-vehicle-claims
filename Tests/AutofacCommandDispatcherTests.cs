@@ -5,7 +5,9 @@ using System.Linq;
 using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Composition;
 using Application.Messaging.Commands;
+using Application.Services;
 using Autofac;
 using Domain;
 using Domain.Repositories;
@@ -28,7 +30,7 @@ namespace Tests
             var builder = new ContainerBuilder();
             builder.RegisterModule(new Application.Composition.CoreModule());
             builder.RegisterModule(new Application.Composition.MessagingModule());
-            builder.RegisterModule(new Infrastructure.Persistance.PersistenceModule()
+            builder.RegisterModule(new PersistenceModule()
             {
                 UseFakeWorkspace = true,
                 ConnectionStringOrName = Path.GetTempFileName()

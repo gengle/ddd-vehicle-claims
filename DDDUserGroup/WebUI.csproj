@@ -350,10 +350,6 @@
       <Project>{6e586a1d-f4cc-45e4-bf0a-382803f25854}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{e8844047-fb4c-4a19-8df2-ced86f89cf7c}</Project>
-      <Name>Domain</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
       <Project>{a667e4d9-b3d4-46b9-8186-ecd5ab210dc1}</Project>
       <Name>Infrastructure</Name>

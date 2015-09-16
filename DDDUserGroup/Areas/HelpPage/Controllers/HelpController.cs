@@ -1,5 +1,6 @@
 using System;
 using System.Web.Http;
+using System.Web.Http.Description;
 using System.Web.Mvc;
 using DDDUserGroup.Areas.HelpPage.ModelDescriptions;
 using DDDUserGroup.Areas.HelpPage.Models;

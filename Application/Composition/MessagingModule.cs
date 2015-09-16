@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using Application.Services;
+using Autofac;
 
 namespace Application.Composition
 {
@@ -7,10 +8,10 @@ namespace Application.Composition
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterAssemblyTypes(typeof (MessagingModule).Assembly)
-                .AsClosedTypesOf(typeof (Infrastructure.Services.ICommandHandler<>));
+                .AsClosedTypesOf(typeof (ICommandHandler<>));
                
-            builder.RegisterType<Infrastructure.Services.AutofacCommandDispatcher>()
-                .As<Infrastructure.Services.ICommandDispatcher>();
+            builder.RegisterType<AutofacCommandDispatcher>()
+                .As<ICommandDispatcher>();
 
             builder.RegisterType<Services.RoutingRelationService>().AsSelf();
 
