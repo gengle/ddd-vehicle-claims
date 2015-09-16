@@ -1,0 +1,44 @@
+﻿
+<div ng-switch
+     on="claim.ClaimState">
+    <div ng-switch-when="Domain.States.RequestingApproval">
+        <span ng-include
+             src="'/app/ui/claim/mutate/requestingApproval.html'"></span>
+    </div>
+
+    <div ng-switch-when="Domain.States.NewClaim">
+        <span ng-include
+              src="'/app/ui/claim/mutate/new.html'"></span>
+    </div>
+
+    <div ng-switch-when="Domain.States.Approved">
+        <span ng-include
+             src="'/app/ui/claim/mutate/approved.html'"></span>
+    </div>
+
+    <div ng-switch-when="Domain.States.ClosedClaim">
+        <span ng-include
+             src="'/app/ui/claim/mutate/closed.html'"></span>
+    </div>
+
+    <div ng-switch-when="Domain.States.OpenedClaim">
+        <span ng-include
+             src="'/app/ui/claim/mutate/opened.html'"></span>
+    </div>
+
+    <div ng-switch-when="Domain.States.ApprovedClaim">
+        <span ng-include
+             src="'/app/ui/claim/mutate/approved.html'"></span>
+    </div>
+
+    <div ng-switch-when="Domain.States.RejectedClaim">
+        <span ng-include
+             src="'/app/ui/claim/mutate/rejected.html'"></span>
+    </div>
+
+</div>
+
+<button ng-click="cancel()">Cancel</button>
+<div ng-repeat="route in claim.Routes">
+    <button ng-click="sendCommand(route)">{{route}}</button>
+</div>

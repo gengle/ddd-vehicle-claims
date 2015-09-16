@@ -15,3 +15,14 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.claimList > div {
+    float: left;
+    border: 1px solid black;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.claimList.item {
+    padding: 5px;
+}

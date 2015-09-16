@@ -1,0 +1,48 @@
+﻿Claims List
+<div class="claimList" 
+     ng-repeat="claim in vm.claims" 
+     ng-switch 
+     on="claim.ClaimState">
+    <div ng-click="vm.mutate(claim)" 
+         ng-switch-when="Domain.States.RequestingApproval">
+        <span ng-include 
+             src="'/app/ui/claim/list/requestingApproval.html'"></span>
+    </div>
+
+    <div ng-click="vm.mutate(claim)"
+         ng-switch-when="Domain.States.NewClaim">
+        <span ng-include
+              src="'/app/ui/claim/list/new.html'"></span>
+    </div>
+
+    <div ng-click="vm.mutate(claim)"
+         ng-switch-when="Domain.States.Approved">
+        <span ng-include 
+             src="'/app/ui/claim/list/approved.html'"></span>
+    </div>
+
+    <div ng-click="vm.mutate(claim)"
+         ng-switch-when="Domain.States.ClosedClaim">
+        <span ng-include 
+             src="'/app/ui/claim/list/closed.html'"></span>
+    </div>
+
+    <div ng-click="vm.mutate(claim)"
+         ng-switch-when="Domain.States.OpenedClaim" >
+        <span ng-include 
+             src="'/app/ui/claim/list/opened.html'"></span>
+    </div>
+
+    <div ng-click="vm.mutate(claim)"
+         ng-switch-when="Domain.States.ApprovedClaim">
+        <span ng-include 
+             src="'/app/ui/claim/list/approved.html'"></span>
+    </div>
+
+    <div ng-click="vm.mutate(claim)"
+         ng-switch-when="Domain.States.RejectedClaim">
+        <span ng-include 
+             src="'/app/ui/claim/list/rejected.html'"></span>
+    </div>
+
+</div>
