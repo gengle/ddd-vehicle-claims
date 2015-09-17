@@ -1,3 +1,4 @@
+using System;
 using Application.Messaging.Commands;
 using Application.Services;
 using Domain;
@@ -17,7 +18,11 @@ namespace Application.Messaging.CommandHandlers
 
         public void Handle(CreateClaimCommand command, Claim claim)
         {
-            claim.AssignPolicy(PolicyNo.FromString(command.PolicyNo), _policyService);
+            var policy = PolicyNo.FromString(command.PolicyNo);
+            if (policy.IsEmpty())
+                policy = PolicyNo.NewRandom();
+
+            claim.AssignPolicy(policy, _policyService);
         }
     }
 }

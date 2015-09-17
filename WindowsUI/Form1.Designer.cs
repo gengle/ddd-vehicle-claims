@@ -29,16 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.policyNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.claimNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.payoutDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vehicleMakeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vehicleModelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vehicleYearDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vehicleVinDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.claimStateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.AssignVehicleCommand = new System.Windows.Forms.TabPage();
             this.assignVehicleExecute = new System.Windows.Forms.Button();
@@ -61,12 +53,17 @@
             this.CloseClaim = new System.Windows.Forms.Button();
             this.ReopenClaimCommand = new System.Windows.Forms.TabPage();
             this.ReopenClaim = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmdAddClaim = new System.Windows.Forms.Button();
-            this.txtPolicyNum = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.policyNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.claimNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.payoutDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vehicleMakeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vehicleModelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vehicleYearDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vehicleVinDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.claimStateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.AssignVehicleCommand.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -75,11 +72,13 @@
             this.RejectPayoutCommand.SuspendLayout();
             this.CloseClaimCommand.SuspendLayout();
             this.ReopenClaimCommand.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -95,65 +94,12 @@
             this.vehicleVinDataGridViewTextBoxColumn,
             this.claimStateDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.bindingSource1;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 104);
+            this.dataGridView1.Location = new System.Drawing.Point(13, 41);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1015, 224);
+            this.dataGridView1.Size = new System.Drawing.Size(1015, 287);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
-            // 
-            // policyNoDataGridViewTextBoxColumn
-            // 
-            this.policyNoDataGridViewTextBoxColumn.DataPropertyName = "PolicyNo";
-            this.policyNoDataGridViewTextBoxColumn.HeaderText = "PolicyNo";
-            this.policyNoDataGridViewTextBoxColumn.Name = "policyNoDataGridViewTextBoxColumn";
-            // 
-            // claimNoDataGridViewTextBoxColumn
-            // 
-            this.claimNoDataGridViewTextBoxColumn.DataPropertyName = "ClaimNo";
-            this.claimNoDataGridViewTextBoxColumn.HeaderText = "ClaimNo";
-            this.claimNoDataGridViewTextBoxColumn.Name = "claimNoDataGridViewTextBoxColumn";
-            // 
-            // payoutDataGridViewTextBoxColumn
-            // 
-            this.payoutDataGridViewTextBoxColumn.DataPropertyName = "Payout";
-            this.payoutDataGridViewTextBoxColumn.HeaderText = "Payout";
-            this.payoutDataGridViewTextBoxColumn.Name = "payoutDataGridViewTextBoxColumn";
-            // 
-            // vehicleMakeDataGridViewTextBoxColumn
-            // 
-            this.vehicleMakeDataGridViewTextBoxColumn.DataPropertyName = "VehicleMake";
-            this.vehicleMakeDataGridViewTextBoxColumn.HeaderText = "VehicleMake";
-            this.vehicleMakeDataGridViewTextBoxColumn.Name = "vehicleMakeDataGridViewTextBoxColumn";
-            // 
-            // vehicleModelDataGridViewTextBoxColumn
-            // 
-            this.vehicleModelDataGridViewTextBoxColumn.DataPropertyName = "VehicleModel";
-            this.vehicleModelDataGridViewTextBoxColumn.HeaderText = "VehicleModel";
-            this.vehicleModelDataGridViewTextBoxColumn.Name = "vehicleModelDataGridViewTextBoxColumn";
-            // 
-            // vehicleYearDataGridViewTextBoxColumn
-            // 
-            this.vehicleYearDataGridViewTextBoxColumn.DataPropertyName = "VehicleYear";
-            this.vehicleYearDataGridViewTextBoxColumn.HeaderText = "VehicleYear";
-            this.vehicleYearDataGridViewTextBoxColumn.Name = "vehicleYearDataGridViewTextBoxColumn";
-            // 
-            // vehicleVinDataGridViewTextBoxColumn
-            // 
-            this.vehicleVinDataGridViewTextBoxColumn.DataPropertyName = "VehicleVin";
-            this.vehicleVinDataGridViewTextBoxColumn.HeaderText = "VehicleVin";
-            this.vehicleVinDataGridViewTextBoxColumn.Name = "vehicleVinDataGridViewTextBoxColumn";
-            // 
-            // claimStateDataGridViewTextBoxColumn
-            // 
-            this.claimStateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.claimStateDataGridViewTextBoxColumn.DataPropertyName = "ClaimState";
-            this.claimStateDataGridViewTextBoxColumn.HeaderText = "ClaimState";
-            this.claimStateDataGridViewTextBoxColumn.Name = "claimStateDataGridViewTextBoxColumn";
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(Application.ViewModels.ClaimView);
             // 
             // tabControl1
             // 
@@ -292,7 +238,7 @@
             this.ApprovePayoutCommand.Controls.Add(this.ApprovePayoutButton);
             this.ApprovePayoutCommand.Location = new System.Drawing.Point(4, 25);
             this.ApprovePayoutCommand.Name = "ApprovePayoutCommand";
-            this.ApprovePayoutCommand.Size = new System.Drawing.Size(1007, 101);
+            this.ApprovePayoutCommand.Size = new System.Drawing.Size(1007, 127);
             this.ApprovePayoutCommand.TabIndex = 1;
             this.ApprovePayoutCommand.Text = "Approve Payout";
             this.ApprovePayoutCommand.UseVisualStyleBackColor = true;
@@ -338,7 +284,7 @@
             this.RejectPayoutCommand.Controls.Add(this.RejectPayout);
             this.RejectPayoutCommand.Location = new System.Drawing.Point(4, 25);
             this.RejectPayoutCommand.Name = "RejectPayoutCommand";
-            this.RejectPayoutCommand.Size = new System.Drawing.Size(1007, 101);
+            this.RejectPayoutCommand.Size = new System.Drawing.Size(1007, 127);
             this.RejectPayoutCommand.TabIndex = 2;
             this.RejectPayoutCommand.Text = "Reject Payout";
             this.RejectPayoutCommand.UseVisualStyleBackColor = true;
@@ -358,7 +304,7 @@
             this.CloseClaimCommand.Controls.Add(this.CloseClaim);
             this.CloseClaimCommand.Location = new System.Drawing.Point(4, 25);
             this.CloseClaimCommand.Name = "CloseClaimCommand";
-            this.CloseClaimCommand.Size = new System.Drawing.Size(1007, 101);
+            this.CloseClaimCommand.Size = new System.Drawing.Size(1007, 127);
             this.CloseClaimCommand.TabIndex = 3;
             this.CloseClaimCommand.Text = "Close Claim";
             this.CloseClaimCommand.UseVisualStyleBackColor = true;
@@ -378,7 +324,7 @@
             this.ReopenClaimCommand.Controls.Add(this.ReopenClaim);
             this.ReopenClaimCommand.Location = new System.Drawing.Point(4, 25);
             this.ReopenClaimCommand.Name = "ReopenClaimCommand";
-            this.ReopenClaimCommand.Size = new System.Drawing.Size(1007, 101);
+            this.ReopenClaimCommand.Size = new System.Drawing.Size(1007, 127);
             this.ReopenClaimCommand.TabIndex = 4;
             this.ReopenClaimCommand.Text = "Reopen Claim";
             this.ReopenClaimCommand.UseVisualStyleBackColor = true;
@@ -393,56 +339,83 @@
             this.ReopenClaim.UseVisualStyleBackColor = true;
             this.ReopenClaim.Click += new System.EventHandler(this.ReopenClaim_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.cmdAddClaim);
-            this.groupBox1.Controls.Add(this.txtPolicyNum);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Location = new System.Drawing.Point(13, 4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 94);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "New Claim";
-            // 
             // cmdAddClaim
             // 
-            this.cmdAddClaim.Location = new System.Drawing.Point(108, 43);
+            this.cmdAddClaim.Location = new System.Drawing.Point(12, 12);
             this.cmdAddClaim.Name = "cmdAddClaim";
-            this.cmdAddClaim.Size = new System.Drawing.Size(75, 23);
+            this.cmdAddClaim.Size = new System.Drawing.Size(105, 23);
             this.cmdAddClaim.TabIndex = 2;
-            this.cmdAddClaim.Text = "Add";
+            this.cmdAddClaim.Text = "New Claim";
             this.cmdAddClaim.UseVisualStyleBackColor = true;
             this.cmdAddClaim.Click += new System.EventHandler(this.cmdAddClaim_Click);
             // 
-            // txtPolicyNum
+            // bindingSource1
             // 
-            this.txtPolicyNum.Location = new System.Drawing.Point(10, 43);
-            this.txtPolicyNum.Name = "txtPolicyNum";
-            this.txtPolicyNum.Size = new System.Drawing.Size(91, 22);
-            this.txtPolicyNum.TabIndex = 1;
+            this.bindingSource1.DataSource = typeof(Application.ViewModels.ClaimView);
             // 
-            // label6
+            // policyNoDataGridViewTextBoxColumn
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 22);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 17);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Policy#";
+            this.policyNoDataGridViewTextBoxColumn.DataPropertyName = "PolicyNo";
+            this.policyNoDataGridViewTextBoxColumn.HeaderText = "PolicyNo";
+            this.policyNoDataGridViewTextBoxColumn.Name = "policyNoDataGridViewTextBoxColumn";
+            // 
+            // claimNoDataGridViewTextBoxColumn
+            // 
+            this.claimNoDataGridViewTextBoxColumn.DataPropertyName = "ClaimNo";
+            this.claimNoDataGridViewTextBoxColumn.HeaderText = "ClaimNo";
+            this.claimNoDataGridViewTextBoxColumn.Name = "claimNoDataGridViewTextBoxColumn";
+            // 
+            // payoutDataGridViewTextBoxColumn
+            // 
+            this.payoutDataGridViewTextBoxColumn.DataPropertyName = "Payout";
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.payoutDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.payoutDataGridViewTextBoxColumn.HeaderText = "Payout";
+            this.payoutDataGridViewTextBoxColumn.Name = "payoutDataGridViewTextBoxColumn";
+            // 
+            // vehicleMakeDataGridViewTextBoxColumn
+            // 
+            this.vehicleMakeDataGridViewTextBoxColumn.DataPropertyName = "VehicleMake";
+            this.vehicleMakeDataGridViewTextBoxColumn.HeaderText = "VehicleMake";
+            this.vehicleMakeDataGridViewTextBoxColumn.Name = "vehicleMakeDataGridViewTextBoxColumn";
+            // 
+            // vehicleModelDataGridViewTextBoxColumn
+            // 
+            this.vehicleModelDataGridViewTextBoxColumn.DataPropertyName = "VehicleModel";
+            this.vehicleModelDataGridViewTextBoxColumn.HeaderText = "VehicleModel";
+            this.vehicleModelDataGridViewTextBoxColumn.Name = "vehicleModelDataGridViewTextBoxColumn";
+            // 
+            // vehicleYearDataGridViewTextBoxColumn
+            // 
+            this.vehicleYearDataGridViewTextBoxColumn.DataPropertyName = "VehicleYear";
+            this.vehicleYearDataGridViewTextBoxColumn.HeaderText = "VehicleYear";
+            this.vehicleYearDataGridViewTextBoxColumn.Name = "vehicleYearDataGridViewTextBoxColumn";
+            // 
+            // vehicleVinDataGridViewTextBoxColumn
+            // 
+            this.vehicleVinDataGridViewTextBoxColumn.DataPropertyName = "VehicleVin";
+            this.vehicleVinDataGridViewTextBoxColumn.HeaderText = "VehicleVin";
+            this.vehicleVinDataGridViewTextBoxColumn.Name = "vehicleVinDataGridViewTextBoxColumn";
+            // 
+            // claimStateDataGridViewTextBoxColumn
+            // 
+            this.claimStateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.claimStateDataGridViewTextBoxColumn.DataPropertyName = "ClaimState";
+            this.claimStateDataGridViewTextBoxColumn.HeaderText = "ClaimState";
+            this.claimStateDataGridViewTextBoxColumn.Name = "claimStateDataGridViewTextBoxColumn";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1040, 497);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.cmdAddClaim);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.AssignVehicleCommand.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -453,8 +426,7 @@
             this.RejectPayoutCommand.ResumeLayout(false);
             this.CloseClaimCommand.ResumeLayout(false);
             this.ReopenClaimCommand.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -482,6 +454,10 @@
         private System.Windows.Forms.Button ApprovePayoutButton;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button RejectPayout;
+        private System.Windows.Forms.Button CloseClaim;
+        private System.Windows.Forms.Button ReopenClaim;
+        private System.Windows.Forms.Button cmdAddClaim;
         private System.Windows.Forms.DataGridViewTextBoxColumn policyNoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn claimNoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn payoutDataGridViewTextBoxColumn;
@@ -490,13 +466,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn vehicleYearDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn vehicleVinDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn claimStateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button RejectPayout;
-        private System.Windows.Forms.Button CloseClaim;
-        private System.Windows.Forms.Button ReopenClaim;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button cmdAddClaim;
-        private System.Windows.Forms.TextBox txtPolicyNum;
-        private System.Windows.Forms.Label label6;
     }
 }
 

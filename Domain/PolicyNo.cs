@@ -60,7 +60,12 @@ namespace Domain
 
         public bool IsEmpty()
         {
-            return Empty.Equals(this);
+            return string.IsNullOrWhiteSpace(this.Value);
+        }
+
+        public static PolicyNo NewRandom()
+        {
+            return new PolicyNo(Guid.NewGuid().ToString("N").Substring(0, 5));
         }
     }
 }

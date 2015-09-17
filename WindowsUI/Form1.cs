@@ -155,13 +155,11 @@ namespace WindowsUI
             _dispatcher.Dispatch(new CreateClaimCommand()
             {
                 Id = id.ToString(),
-                PolicyNo = txtPolicyNum.Text
             });
             _workspace.Commit();
             var newClaim = _claimReader.GetById(id);
             _claims.Add(newClaim);
             dataGridView1.Refresh();
-            txtPolicyNum.Text = string.Empty;
         }
     }
 }
