@@ -5,9 +5,9 @@
 
     app.controller('ClaimsControllerList', ClaimsController);
 
-    app.$inject = ['$http', '$modal'];
+    ClaimsController.$inject = ['$http', '$modal', 'ClaimsCommandFactory'];
 
-    function ClaimsController($http, $modal) {
+    function ClaimsController($http, $modal, claimsCommandFactory) {
         var vm = this;
 
         initialize();
@@ -18,6 +18,20 @@
                 vm.claims = response.data;
             });
         }
+
+        vm.createClaim = function () {
+            var command = claimsCommandFactory.create('CreateClaimCommand', {
+                id: '',
+                policyNo:  Math.random()
+            });
+
+            $http.post('/api/commands/execute', command)
+                .then(function (response) {
+                    console.log('SUCCESS', response);
+                }, function (error) {
+                    console.log('ERROR', error);
+                });
+        };
 
         vm.mutate = function (claim) {
             console.log(claim);

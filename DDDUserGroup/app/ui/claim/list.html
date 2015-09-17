@@ -1,46 +1,52 @@
-﻿Claims List
+﻿<i tooltip="Create Claim" 
+   class="fa fa-plus-circle fa-4x" 
+   ng-click="vm.createClaim()"
+   style="color: blue; margin-left:25px;"></i>
+
+<div>
+    <h2>Claims List</h2>
+</div>
+
 <div class="claimList" 
      ng-repeat="claim in vm.claims" 
      ng-switch 
      on="claim.ClaimState">
-    <div ng-click="vm.mutate(claim)" 
-         ng-switch-when="Domain.States.RequestingApproval">
+
+    <i ng-click="vm.mutate(claim)"
+       style="margin-left:5px;cursor: pointer;" 
+       class="fa fa-pencil fa-2x"></i>
+
+    <div ng-switch-when="Domain.States.RequestingApproval">
         <span ng-include 
-             src="'/app/ui/claim/list/requestingApproval.html'"></span>
+              src="'/app/ui/claim/list/requestingApproval.html'"></span>
     </div>
 
-    <div ng-click="vm.mutate(claim)"
-         ng-switch-when="Domain.States.NewClaim">
+    <div ng-switch-when="Domain.States.NewClaim">
         <span ng-include
               src="'/app/ui/claim/list/new.html'"></span>
     </div>
 
-    <div ng-click="vm.mutate(claim)"
-         ng-switch-when="Domain.States.Approved">
+    <div ng-switch-when="Domain.States.Approved">
         <span ng-include 
              src="'/app/ui/claim/list/approved.html'"></span>
     </div>
 
-    <div ng-click="vm.mutate(claim)"
-         ng-switch-when="Domain.States.ClosedClaim">
+    <div ng-switch-when="Domain.States.ClosedClaim">
         <span ng-include 
              src="'/app/ui/claim/list/closed.html'"></span>
     </div>
 
-    <div ng-click="vm.mutate(claim)"
-         ng-switch-when="Domain.States.OpenedClaim" >
+    <div ng-switch-when="Domain.States.OpenedClaim" >
         <span ng-include 
              src="'/app/ui/claim/list/opened.html'"></span>
     </div>
 
-    <div ng-click="vm.mutate(claim)"
-         ng-switch-when="Domain.States.ApprovedClaim">
+    <div ng-switch-when="Domain.States.ApprovedClaim">
         <span ng-include 
              src="'/app/ui/claim/list/approved.html'"></span>
     </div>
 
-    <div ng-click="vm.mutate(claim)"
-         ng-switch-when="Domain.States.RejectedClaim">
+    <div ng-switch-when="Domain.States.RejectedClaim">
         <span ng-include 
              src="'/app/ui/claim/list/rejected.html'"></span>
     </div>

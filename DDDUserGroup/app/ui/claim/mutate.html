@@ -1,4 +1,8 @@
 ﻿
+<div ng-click="cancel()" class="pull-right modal-cancel">
+    <i class="fa fa-times fa-2x"></i>
+</div>
+
 <div ng-switch
      on="claim.ClaimState">
     <div ng-switch-when="Domain.States.RequestingApproval">
@@ -36,9 +40,4 @@
              src="'/app/ui/claim/mutate/rejected.html'"></span>
     </div>
 
-</div>
-
-<button ng-click="cancel()">Cancel</button>
-<div ng-repeat="route in claim.Routes">
-    <button ng-click="sendCommand(route)">{{route}}</button>
 </div>

@@ -1,0 +1,38 @@
+﻿
+<form>
+    <div class="col-md-1"></div>
+    <div class="form-group col-md-8">
+        <label class="sr-only" 
+               for="make">Make</label>
+        <input type="text" 
+               class="form-control" 
+               id="make"
+               placeholder="Make"
+               ng-bind="model.make" />
+
+        <label class="sr-only"
+               for="model">Model</label>
+        <input type="text" 
+               class="form-control"
+               id="model"
+               placeholder="Model"
+               ng-bind="model.model" />
+
+        <label class="sr-only"
+               for="year">Year</label>
+        <input type="text" 
+               class="form-control"
+               id="year"
+               placeholder="Year"
+               ng-bind="model.year" />
+
+        <label class="sr-only"
+               for="vin">VIN</label>
+        <input type="text" 
+               class="form-control"
+               id="vin"
+               placeholder="VIN"
+               ng-bind="model.vin" />
+    </div>
+    <div class="col-md-3"></div>
+</form>
