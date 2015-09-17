@@ -263,6 +263,7 @@
     <Content Include="app\ui\claim\list.html" />
     <Content Include="app\ui\claim\create.html" />
     <Content Include="app\ui\claim\ui.claimsController.mutate.js" />
+    <Content Include="app\ui\common\ui.common.guidFactory.js" />
     <Content Include="app\ui\ui.routes.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />

@@ -5,9 +5,9 @@
 
     app.controller('ClaimsControllerList', ClaimsController);
 
-    ClaimsController.$inject = ['$http', '$modal', 'ClaimsCommandFactory'];
+    ClaimsController.$inject = ['$http', '$modal', 'ClaimsCommandFactory', 'CommonGuidFactory', 'ClaimsMapper'];
 
-    function ClaimsController($http, $modal, claimsCommandFactory) {
+    function ClaimsController($http, $modal, claimsCommandFactory, commonGuidFactory, claimsMapper) {
         var vm = this;
 
         initialize();
@@ -21,13 +21,21 @@
 
         vm.createClaim = function () {
             var command = claimsCommandFactory.create('CreateClaimCommand', {
-                id: '',
+                id: commonGuidFactory.create(),
                 policyNo:  ''
             });
 
             $http.post('/api/commands/execute', command)
                 .then(function (response) {
                     console.log('SUCCESS', response);
+                    var claim = {};
+
+                    if (response && response.data) {
+                        claimsMapper.mapResponse(claim, response);
+                        vm.claims.push(claim);
+                    }
+
+                    
                 }, function (error) {
                     console.log('ERROR', error);
                 });
