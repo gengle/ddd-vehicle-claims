@@ -19,28 +19,6 @@
             });
         }
 
-        vm.createClaim = function () {
-            var command = claimsCommandFactory.create('CreateClaimCommand', {
-                id: commonGuidFactory.create(),
-                policyNo:  ''
-            });
-
-            $http.post('/api/commands/execute', command)
-                .then(function (response) {
-                    console.log('SUCCESS', response);
-                    var claim = {};
-
-                    if (response && response.data) {
-                        claimsMapper.mapResponse(claim, response);
-                        vm.claims.push(claim);
-                    }
-
-                    
-                }, function (error) {
-                    console.log('ERROR', error);
-                });
-        };
-
         vm.mutate = function (claim) {
             console.log(claim);
 

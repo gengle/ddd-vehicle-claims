@@ -244,6 +244,7 @@
     <Content Include="app\ui\claim\commands\rejectPayoutCommand.html" />
     <Content Include="app\ui\claim\commands\reopenClaimCommand.html" />
     <Content Include="app\ui\claim\commands\ui.claims.commandFactory.js" />
+    <Content Include="app\ui\claim\directives\ui.claims.createClaimDirective.js" />
     <Content Include="app\ui\claim\list\new.html" />
     <Content Include="app\ui\claim\mutate\new.html" />
     <Content Include="app\ui\claim\mutate\ui.claims.mutate.requestApprovalController.js" />
