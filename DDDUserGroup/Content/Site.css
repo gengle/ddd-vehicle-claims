@@ -20,13 +20,18 @@ textarea {
     cursor:pointer;
 }
 
-.claimList > div {
+.claimList {
     float: left;
     border: 1px solid black;
     margin: 5px;
-    cursor: pointer;
+    background-color: lightgrey;
 }
 
-.claimList.item {
+.claimsListItem {
+    width: 400px;
+    padding: 5px;
+}
+
+.claimsMutateItem {
     padding: 5px;
 }

@@ -1,14 +1,12 @@
-﻿<div class="claimList item" style="background-color: yellow;">
-    <span><i class="fa fa-reply"></i></span>
-    <span>{{claim.ClaimNo}}</span>
-    <span>{{claim.Payout}}</span>
-    <span>{{claim.PolicyNo}}</span>
+﻿<div class="claimsMutateItem modal-header" style="background-color: yellow;">
+    <span><i class="fa fa-reply fa-2x"></i></span>
+    <h3 class="modal-title" style="display:inline;">{{claim.ClaimNo}}</h3>
 </div>
 
 <div ng-controller="ClaimsControllerMutateRequestingApproval">
     <tabset>
-        <tab ng-repeat="route in claim.Routes"
-             heading="{{route}}">
+        <tab ng-repeat="route in claim.Routes">
+            <tab-heading>{{route}}</tab-heading>
             <div style="margin-left:15px;margin-top:5px;" ng-switch
                  on="route">
                 <div ng-switch-when="ApprovePayoutCommand">

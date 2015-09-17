@@ -3,7 +3,7 @@
 
     var app = angular.module('app');
 
-    app.controller('ClaimsMapper', ClaimsMapper);
+    app.factory('ClaimsMapper', ClaimsMapper);
 
     ClaimsMapper.$inject = [];
 
@@ -16,7 +16,18 @@
         return service;
         
         function mapResponse(claim, response) {
-             // todo: build this out
+
+            claim.ClaimNo = response.data.ClaimNo;
+            claim.ClaimState = response.data.ClaimState;
+            claim.Id = response.data.Id;
+            claim.Payout = response.data.Payout;
+            claim.PolicyNo = response.data.PolicyNo;
+            claim.Routes = response.data.Routes;
+            claim.VehicleMake = response.data.VehicleMake;
+            claim.VehicleModel = response.data.VehicleModel;
+            claim.VehicleYear = response.data.VehicleYear;
+            claim.VehicleVIN = response.data.VehicleVIN;
+
         }
     }
 })();
