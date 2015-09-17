@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Core
 {
     [Serializable]
-    public class DomainException : Exception
+    public class DomainException : ApplicationException
     {
         //
         // For guidelines regarding the creation of new exception types, see

@@ -67,5 +67,38 @@ namespace Domain
         {
             return $"Make: {Make}, Model: {Model}, Year: {Year}, Vin: {Vin}";
         }
+
+        public Vehicle WithMake(string value)
+        {
+            return new Vehicle(value, this.Model, this.Year, this.Vin);
+        }
+
+        public Vehicle WithModel(string value)
+        {
+            return new Vehicle(this.Make, value, this.Year, this.Vin);
+        }
+
+        public Vehicle WithYear(string value)
+        {
+            var year = 0;
+            if (int.TryParse(value, out year))
+            {
+                return new Vehicle(this.Make, this.Model, year, this.Vin);
+            }
+            return this;
+        }
+
+        public Vehicle WithVin(string value)
+        {
+            return new Vehicle(this.Make, this.Model, this.Year, value);
+        }
+
+        public bool IsEmpty()
+        {
+            return string.IsNullOrWhiteSpace(this.Make) &&
+                   string.IsNullOrWhiteSpace(this.Model) &&
+                   !this.Year.HasValue &&
+                   string.IsNullOrWhiteSpace(this.Vin);
+        }
     }
 }

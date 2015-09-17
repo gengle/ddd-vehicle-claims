@@ -31,11 +31,26 @@ namespace WindowsUI
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
             Container = builder.Build();
+            AppDomain.CurrentDomain.FirstChanceException += CurrentDomain_FirstChanceException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
             var form = Container.Resolve<Form1>();
             System.Windows.Forms.Application.Run(form);
             System.Windows.Forms.Application.ApplicationExit += Application_ApplicationExit;
+        }
+
+        private static void CurrentDomain_FirstChanceException(object sender, System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs e)
+        {
             
+        }
+
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            var ex = e.ExceptionObject as Exception;
+            if (ex != null)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+            }
         }
 
         private static void Application_ApplicationExit(object sender, EventArgs e)

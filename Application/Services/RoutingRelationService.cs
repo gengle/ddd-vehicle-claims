@@ -26,7 +26,7 @@ namespace Application.Services
             RoutingSlip.For<RejectedClaim>()
                 .Relate<CloseClaimCommand>(),
             RoutingSlip.For<ClosedClaim>()
-                .Relate<OpenedClaim>()
+                .Relate<ReopenClaimCommand>()
         };
 
         public IEnumerable<string> GetRelations(string forType)

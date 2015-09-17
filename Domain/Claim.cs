@@ -73,6 +73,7 @@ namespace Domain
             {
                 Guard.NotNull(() => policyNo, policyNo);
                 Guard.NotNull(() => policyService, policyService);
+                if (policyNo.IsEmpty()) throw new DomainException("Unable to change Policy once set");
 
                 if (!policyNo.Equals(PolicyNo) && !this.PolicyNo.IsEmpty())
                     throw new DomainException("Unable to change Policy once set");
@@ -92,7 +93,7 @@ namespace Domain
             {
                 Guard.NotNull(() => vehicle, vehicle);
                 Guard.NotNull(() => vehicleService, vehicleService);
-
+                if (vehicle.IsEmpty()) throw new ArgumentNullException(nameof(vehicle));
                 vehicleService.ValidateVehicle(vehicle);
                 this.Vehicle = vehicle;
             });

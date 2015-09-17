@@ -30,7 +30,7 @@ namespace WindowsUI
         public Form1(ClaimReader claimReader, ICommandDispatcher dispatcher, IWorkspace workspace):this()
         {
             _claimReader = claimReader;
-            _dispatcher = dispatcher;
+            _dispatcher = new ExceptionTrapDispatcher(dispatcher);
             this._workspace = workspace;
         }
 
@@ -39,26 +39,23 @@ namespace WindowsUI
             base.OnLoad(e);
             _claims = new BindingList<ClaimView>(_claimReader.GetAll().ToList());
             bindingSource1.DataSource = _claims;
-
-            //ataGridView1.DataSource = _claimReader.GetAll();
         }
 
-        private void assignVehicleToolStripMenuItem_Click(object sender, EventArgs e)
+        protected ClaimView GetClaimView(int row)
         {
-
+            return _claims[row];
         }
 
-        private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
+        void UpdateTabPages(ClaimView item)
         {
-            var item = bindingSource1.Current as ClaimView;
+            if (item == null) return;
             var handlers = new Dictionary<string, Action>()
             {
                 {"AssignVehicleCommand", () => tabControl1.TabPages.Add(AssignVehicleCommand)},
                 {"ApprovePayoutCommand", () => tabControl1.TabPages.Add(ApprovePayoutCommand)},
                 {"CloseClaimCommand", () => tabControl1.TabPages.Add(CloseClaimCommand)},
-                //{"CreateClaimCommand", () => tabControl1.TabPages.Add(CreateClaimCommand)},
                 {"RejectPayoutCommand", () => tabControl1.TabPages.Add(RejectPayoutCommand)},
-                { "ReopenClaimCommand", () => tabControl1.TabPages.Add(ReopenClaimCommand)},
+                {"ReopenClaimCommand", () => tabControl1.TabPages.Add(ReopenClaimCommand)},
             };
 
             if (item != null)
@@ -68,23 +65,13 @@ namespace WindowsUI
                 {
                     handlers[tab].Invoke();
                 }
-
-                //foreach (TabPage tab in tabControl1.TabPages.OfType<TabPage>().ToList())
-                //{
-                //    if (item.Routes.Contains(tab.Name))
-                //        tabControl1.TabPages.Remove(tab);
-                //    else
-                //        handlers[tab.Name].Invoke();
-                //    //tab.Visible = item.Routes.Contains(tab.Name);
-                //}
             }
             tabControl1.Refresh();
-            //e.RowIndex
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-
+            var item = GetClaimView(e.RowIndex);
+            UpdateTabPages(item);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -94,8 +81,10 @@ namespace WindowsUI
 
         void Refresh(ClaimView view)
         {
-            _claims[bindingSource1.Position] = _claimReader.GetById(new ClaimId(view.Id));
+            var reloaded = _claimReader.GetById(new ClaimId(view.Id));
+            _claims[bindingSource1.Position] = reloaded;
             dataGridView1.Refresh();
+            UpdateTabPages(reloaded);
             _workspace.Commit();
         }
 
@@ -137,6 +126,42 @@ namespace WindowsUI
                 _dispatcher.Dispatch(new ReopenClaimCommand() { Id = item.Id.ToString() });
                 Refresh(item);
             }
+        }
+
+        private void assignVehicleExecute_Click(object sender, EventArgs e)
+        {
+            var item = bindingSource1.Current as ClaimView;
+            if (item != null)
+            {
+                _dispatcher.Dispatch(new AssignVehicleCommand()
+                {
+                    Id = item.Id.ToString(),
+                    Vehicle = new Vehicle().WithMake(txtMake.Text)
+                            .WithModel(txtModel.Text)
+                            .WithYear(txtYear.Text)
+                            .WithVin(txtVin.Text)
+                });
+                Refresh(item);
+                txtMake.Text = string.Empty;
+                txtModel.Text = string.Empty;
+                txtYear.Text = string.Empty;
+                txtVin.Text = string.Empty;
+            }
+        }
+
+        private void cmdAddClaim_Click(object sender, EventArgs e)
+        {
+            var id = ClaimId.NewId();
+            _dispatcher.Dispatch(new CreateClaimCommand()
+            {
+                Id = id.ToString(),
+                PolicyNo = txtPolicyNum.Text
+            });
+            _workspace.Commit();
+            var newClaim = _claimReader.GetById(id);
+            _claims.Add(newClaim);
+            dataGridView1.Refresh();
+            txtPolicyNum.Text = string.Empty;
         }
     }
 }
