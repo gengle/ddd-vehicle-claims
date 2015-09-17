@@ -9,12 +9,13 @@
 
     function createClaim() {
         return {
-            templateUrl: config.doc.module.rootFolder + '/app/ui/claim/create.html',
+            templateUrl: '/app/ui/claim/create.html',
             restrict: 'E',
             scope: {
                 claims: "="
             },
-            controller: ['$scope', '$http', function ($scope, $http) {
+            controller: ['$scope', '$http', 'ClaimsCommandFactory', 'CommonGuidFactory', 'ClaimsMapper', 
+                function ($scope, $http, claimsCommandFactory, commonGuidFactory, claimsMapper) {
 
                 $scope.createClaim = function () {
                     var command = claimsCommandFactory.create('CreateClaimCommand', {

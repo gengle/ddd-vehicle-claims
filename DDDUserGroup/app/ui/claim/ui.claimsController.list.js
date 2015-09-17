@@ -5,9 +5,9 @@
 
     app.controller('ClaimsControllerList', ClaimsController);
 
-    ClaimsController.$inject = ['$http', '$modal', 'ClaimsCommandFactory', 'CommonGuidFactory', 'ClaimsMapper'];
+    ClaimsController.$inject = ['$http', '$modal'];
 
-    function ClaimsController($http, $modal, claimsCommandFactory, commonGuidFactory, claimsMapper) {
+    function ClaimsController($http, $modal) {
         var vm = this;
 
         initialize();
