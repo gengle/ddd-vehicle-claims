@@ -9,7 +9,7 @@
 
     function createClaim() {
         return {
-            templateUrl: '/app/ui/claim/create.html',
+            templateUrl: '/app/ui/claim/directives/create.html',
             restrict: 'E',
             scope: {
                 claims: "="
