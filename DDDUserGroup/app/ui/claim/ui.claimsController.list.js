@@ -22,7 +22,7 @@
         vm.createClaim = function () {
             var command = claimsCommandFactory.create('CreateClaimCommand', {
                 id: '',
-                policyNo:  Math.random()
+                policyNo:  ''
             });
 
             $http.post('/api/commands/execute', command)

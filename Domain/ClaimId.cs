@@ -71,6 +71,9 @@ namespace Domain
 
         public static ClaimId FromString(string id)
         {
+            if (string.IsNullOrWhiteSpace(id))
+                id = (Guid.NewGuid()).ToString();
+
             return new ClaimId(Guid.Parse(id));
         }
     }
