@@ -3,11 +3,11 @@
 
     var app = angular.module('app');
 
-    app.controller('ClaimsControllerMutate', ClaimsControllerMutate);
+    app.controller('ClaimsMutateModalController', ClaimsMutateModalController);
 
-    ClaimsControllerMutate.$inject = ['$scope', '$modalInstance', 'options', '$http'];
+    ClaimsMutateModalController.$inject = ['$scope', '$modalInstance', 'options', '$http'];
 
-    function ClaimsControllerMutate($scope, $modalInstance, options) {
+    function ClaimsMutateModalController($scope, $modalInstance, options) {
 
         $scope.$modalInstance = $modalInstance;
 

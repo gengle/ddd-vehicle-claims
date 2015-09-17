@@ -3,11 +3,11 @@
 
     var app = angular.module('app');
 
-    app.controller('ClaimsControllerMutateRequestingApproval', ClaimsControllerMutateRequestingApproval);
+    app.controller('ClaimsControllerMutate', ClaimsControllerMutate);
 
-    ClaimsControllerMutateRequestingApproval.$inject = ['$http', '$scope', 'ClaimsCommandFactory', 'ClaimsMapper'];
+    ClaimsControllerMutate.$inject = ['$http', '$scope', 'ClaimsCommandFactory', 'ClaimsMapper'];
 
-    function ClaimsControllerMutateRequestingApproval($http, $scope, claimsCommandFactory, claimsMapper) {
+    function ClaimsControllerMutate($http, $scope, claimsCommandFactory, claimsMapper) {
         
         $scope.model = { };
 
@@ -19,7 +19,7 @@
             $scope.model.model = $scope.$parent.claim.VehicleModel;
             $scope.model.year = $scope.$parent.claim.VehicleYear;
 
-            console.log('ClaimsControllerMutateRequestingApproval');
+            console.log('ClaimsControllerMutate Initialized');
         }
 
         $scope.execute = function (commandType) {
