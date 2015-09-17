@@ -22,8 +22,10 @@ namespace Application.Services
                 .Relate<RejectPayoutCommand>()
                 .Relate<AssignVehicleCommand>(),
             RoutingSlip.For<ApprovedClaim>()
+                .Relate<RejectPayoutCommand>()
                 .Relate<CloseClaimCommand>(),
             RoutingSlip.For<RejectedClaim>()
+                .Relate<ApprovePayoutCommand>()
                 .Relate<CloseClaimCommand>(),
             RoutingSlip.For<ClosedClaim>()
                 .Relate<ReopenClaimCommand>()

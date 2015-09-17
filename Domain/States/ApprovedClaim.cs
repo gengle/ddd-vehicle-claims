@@ -13,5 +13,11 @@ namespace Domain.States
             action();
             Context._state = new ClosedClaim(this.Context);
         }
+
+        public override void Reject(Action action)
+        {
+            action();
+            Context._state = new RejectedClaim(this.Context);
+        }
     }
 }

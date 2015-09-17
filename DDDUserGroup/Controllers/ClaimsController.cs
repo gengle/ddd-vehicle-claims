@@ -49,8 +49,9 @@ namespace DDDUserGroup.Controllers
         // /api/claims
         public IHttpActionResult GetAllClaims()
         {
-            var data = _claimReader.GetAll();
-            return new JsonResult(data, Request);
+            return Ok(_claimReader.GetAll());
+            //var data = _claimReader.GetAll();
+            //return new JsonResult(data, Request);
         }
 
         // /api/claims/{id}
