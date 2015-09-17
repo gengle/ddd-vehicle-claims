@@ -26,7 +26,7 @@
             claim.VehicleMake = response.data.VehicleMake;
             claim.VehicleModel = response.data.VehicleModel;
             claim.VehicleYear = response.data.VehicleYear;
-            claim.VehicleVIN = response.data.VehicleVin;
+            claim.VehicleVin = response.data.VehicleVin;
 
         }
     }

@@ -14,6 +14,11 @@
         initialize();
 
         function initialize() {
+            $scope.model.vin = $scope.$parent.claim.VehicleVin;
+            $scope.model.make = $scope.$parent.claim.VehicleMake;
+            $scope.model.model = $scope.$parent.claim.VehicleModel;
+            $scope.model.year = $scope.$parent.claim.VehicleYear;
+
             console.log('ClaimsControllerMutateRequestingApproval');
         }
 
