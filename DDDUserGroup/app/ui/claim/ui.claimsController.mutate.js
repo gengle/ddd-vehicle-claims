@@ -22,12 +22,6 @@
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
-
-        //$scope.sendCommand = function (command) {
-        //    console.log('sending command', command);
-        //    //$http.post()
-        //    $modalInstance.close('ok');
-        //};
     }
 
 })();

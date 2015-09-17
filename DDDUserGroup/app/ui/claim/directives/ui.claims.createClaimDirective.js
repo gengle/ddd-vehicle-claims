@@ -9,7 +9,7 @@
 
     function createClaim() {
         return {
-            templateUrl: '/app/ui/claim/create.html',
+            templateUrl: '/app/ui/claim/directives/create.html',
             restrict: 'E',
             scope: {
                 claims: "="
@@ -30,7 +30,7 @@
 
                             if (response && response.data) {
                                 claimsMapper.mapResponse(claim, response);
-                                $scope.claims.push(claim);
+                                $scope.claims.unshift(claim);
                             }
 
                         }, function (error) {

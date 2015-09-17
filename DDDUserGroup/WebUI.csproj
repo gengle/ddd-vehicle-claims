@@ -248,7 +248,7 @@
     <Content Include="app\ui\claim\list\new.html" />
     <Content Include="app\ui\claim\mutate\new.html" />
     <Content Include="app\ui\claim\mutate\ui.claims.mutate.requestApprovalController.js" />
-    <Content Include="app\ui\claim\ui.claims.responseMapper.js" />
+    <Content Include="app\ui\claim\common\ui.claims.responseMapper.js" />
     <Content Include="app\ui\claim\ui.claimsController.list.js" />
     <Content Include="app\ui\claim\list\approved.html" />
     <Content Include="app\ui\claim\list\closed.html" />
@@ -262,7 +262,7 @@
     <Content Include="app\ui\claim\mutate\requestingApproval.html" />
     <Content Include="app\ui\claim\mutate.html" />
     <Content Include="app\ui\claim\list.html" />
-    <Content Include="app\ui\claim\create.html" />
+    <Content Include="app\ui\claim\directives\create.html" />
     <Content Include="app\ui\claim\ui.claimsController.mutate.js" />
     <Content Include="app\ui\common\ui.common.guidFactory.js" />
     <Content Include="app\ui\ui.routes.js" />
