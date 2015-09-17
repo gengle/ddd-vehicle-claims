@@ -17,7 +17,8 @@ namespace Application.Messaging.CommandHandlers
 
         public void Handle(AssignVehicleCommand command, Claim claim)
         {
-            claim.AssignVehicle(command.Vehicle, _vehicleService);
+            var vehicle = new Vehicle(command.Make, command.Model, command.Year, command.Vin);
+            claim.AssignVehicle(vehicle, _vehicleService);
         }
     }
 }
