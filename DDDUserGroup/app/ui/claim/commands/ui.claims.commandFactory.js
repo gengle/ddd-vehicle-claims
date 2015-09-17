@@ -66,10 +66,10 @@
 
              // todo: look at making data deeper ... data.vehicle.make or making command flat need less impedence
              assignVehicleCommand.Id = data.id;
-             assignVehicleCommand.Vehicle.Make = data.make;
-             assignVehicleCommand.Vehicle.Model = data.model;
-             assignVehicleCommand.Vehicle.Year = data.year;
-             assignVehicleCommand.Vehicle.VIN = data.vin;
+             assignVehicleCommand.Make = data.make;
+             assignVehicleCommand.Model = data.model;
+             assignVehicleCommand.Year = data.year;
+             assignVehicleCommand.Vin = data.vin;
              return assignVehicleCommand;
          }
 
