@@ -30,7 +30,7 @@
 
                             if (response && response.data) {
                                 claimsMapper.mapResponse(claim, response);
-                                $scope.claims.push(claim);
+                                $scope.claims.unshift(claim);
                             }
 
                         }, function (error) {
