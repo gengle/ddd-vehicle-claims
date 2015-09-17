@@ -236,8 +236,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.module.js" />
+    <Content Include="app\ui\claim\commands\approvePayoutCommand.html" />
+    <Content Include="app\ui\claim\commands\assignVehicleCommand.html" />
+    <Content Include="app\ui\claim\commands\closeClaimCommand.html" />
+    <Content Include="app\ui\claim\commands\createClaimCommand.html" />
+    <Content Include="app\ui\claim\commands\rejectPayoutCommand.html" />
+    <Content Include="app\ui\claim\commands\reopenClaimCommand.html" />
+    <Content Include="app\ui\claim\commands\ui.claims.commandFactory.js" />
     <Content Include="app\ui\claim\list\new.html" />
     <Content Include="app\ui\claim\mutate\new.html" />
+    <Content Include="app\ui\claim\mutate\ui.claims.mutate.requestApprovalController.js" />
+    <Content Include="app\ui\claim\ui.claims.responseMapper.js" />
     <Content Include="app\ui\claim\ui.claimsController.list.js" />
     <Content Include="app\ui\claim\list\approved.html" />
     <Content Include="app\ui\claim\list\closed.html" />

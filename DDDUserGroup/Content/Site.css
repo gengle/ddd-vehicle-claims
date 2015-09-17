@@ -16,6 +16,10 @@ textarea {
     max-width: 280px;
 }
 
+.modal-cancel {
+    cursor:pointer;
+}
+
 .claimList > div {
     float: left;
     border: 1px solid black;

@@ -5,9 +5,11 @@
 
     app.controller('ClaimsControllerMutate', ClaimsControllerMutate);
 
-    app.$inject = ['$scope', '$modalInstance', 'options', '$http'];
+    ClaimsControllerMutate.$inject = ['$scope', '$modalInstance', 'options', '$http'];
 
     function ClaimsControllerMutate($scope, $modalInstance, options) {
+
+        $scope.$modalInstance = $modalInstance;
 
         initialize();
 
@@ -21,11 +23,11 @@
             $modalInstance.dismiss('cancel');
         };
 
-        $scope.sendCommand = function (command) {
-            console.log('sending command', command);
-            //$http.post()
-            $modalInstance.close('ok');
-        };
+        //$scope.sendCommand = function (command) {
+        //    console.log('sending command', command);
+        //    //$http.post()
+        //    $modalInstance.close('ok');
+        //};
     }
 
 })();

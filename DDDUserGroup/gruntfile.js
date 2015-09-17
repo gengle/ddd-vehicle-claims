@@ -37,7 +37,7 @@ module.exports = function (grunt) {
                 debounceDelay: 3000
             },
             app: {
-                files: ['app/**/*.js', '!app/dist/**'],
+                files: ['app/**/*.js', '**/*.html', '!app/dist/**'],
                 tasks: ['local']
             },
             configFiles: {
