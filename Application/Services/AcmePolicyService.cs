@@ -10,7 +10,7 @@ namespace Application.Services
     {
         public ClaimNo GenerateClaimNo(PolicyNo policyNo)
         {
-            return new ClaimNo($"{policyNo}:{DateTime.UtcNow:HHmmss}");
+            return new ClaimNo($"{policyNo.Value}:{DateTime.UtcNow:HHmmss}");
         }
     }
 }
