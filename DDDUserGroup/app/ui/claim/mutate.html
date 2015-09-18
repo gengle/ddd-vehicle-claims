@@ -40,4 +40,22 @@
              src="'/app/ui/claim/mutate/rejected.html'"></span>
     </div>
 
+    <div ng-controller="ClaimsControllerMutate">
+        <tabset>
+            <tab ng-repeat="route in claim.Routes"
+                 heading="{{route}}">
+                <div style="margin-left:15px;margin-top:5px;"
+                     ng-switch
+                     on="route">
+                    <div ng-switch-when="ApprovePayoutCommand">
+                        <span ng-include
+                              ng-src="'/app/ui/claim/commands/' + route + '.html'"></span>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" style="margin: 5px;" ng-click="execute(route)">{{route}}</button>
+            </tab>
+        </tabset>
+    </div>
+
 </div>
