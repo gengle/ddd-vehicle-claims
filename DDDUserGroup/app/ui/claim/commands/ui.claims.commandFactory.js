@@ -64,7 +64,6 @@
                  }
              };
 
-             // todo: look at making data deeper ... data.vehicle.make or making command flat need less impedence
              assignVehicleCommand.Id = data.id;
              assignVehicleCommand.Make = data.make;
              assignVehicleCommand.Model = data.model;

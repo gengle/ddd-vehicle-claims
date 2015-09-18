@@ -23,8 +23,13 @@ textarea {
 .claimList {
     float: left;
     border: 1px solid black;
+    border-radius: 5px;
     margin: 5px;
     background-color: lightgrey;
+}
+
+.claimListVehicle {
+    border-top: 1px solid black;
 }
 
 .claimsListItem {

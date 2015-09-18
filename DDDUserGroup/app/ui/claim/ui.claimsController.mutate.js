@@ -21,6 +21,7 @@
             $scope.model.make = $scope.claim.VehicleMake;
             $scope.model.model = $scope.claim.VehicleModel;
             $scope.model.year = $scope.claim.VehicleYear;
+            $scope.model.amount = $scope.claim.Payout;
 
             console.log('ClaimsMutateModalController Initialized');
         }

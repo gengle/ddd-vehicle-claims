@@ -20,7 +20,7 @@
 
                     $scope.createClaim = function () {
                         var claim = {
-                            ClaimState: 'Domain.States.NewClaim',
+                            ClaimState: 'NewClaim',
                             Id: commonGuidFactory.create(),
                             Routes: [
                                 'CreateClaimCommand'
