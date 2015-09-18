@@ -250,6 +250,7 @@
     <Content Include="app\ui\claim\list\NewClaim.html" />
     <Content Include="app\ui\claim\list\OpenedClaim.html" />
     <Content Include="app\ui\claim\list\RejectedClaim.html" />
+    <Content Include="app\ui\claim\list\RequestingApproval.html" />
     <Content Include="app\ui\claim\mutate\NewClaim.html" />
     <Content Include="app\ui\claim\common\ui.claims.responseMapper.js" />
     <Content Include="app\ui\claim\ui.claimsController.list.js" />
