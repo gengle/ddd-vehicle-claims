@@ -27,7 +27,7 @@ namespace Application.Services
                 Id = memento.Id,
                 PolicyNo = memento.PolicyNo,
                 ClaimNo = memento.ClaimNo,
-                ClaimState = memento.ClaimState,
+                ClaimState = memento.ClaimState.Remove(0,14),
                 Routes = _routingRelationService.GetRelations(memento.ClaimState).ToArray(),
                 Payout = memento.Payout,
                 VehicleMake = memento.Vehicle.Make,

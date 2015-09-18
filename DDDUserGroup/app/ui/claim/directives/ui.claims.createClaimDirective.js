@@ -16,15 +16,17 @@
             },
             controller: ['$scope', '$http', '$modal', 'ClaimsCommandFactory', 'CommonGuidFactory', 'ClaimsMapper', 
                 function ($scope, $http, $modal, claimsCommandFactory, commonGuidFactory, claimsMapper) {
-                    var claim = {
-                        ClaimState: 'Domain.States.NewClaim',
-                        Id: commonGuidFactory.create(),
-                        Routes: [
-                            'CreateClaimCommand'
-                        ]
-                    };
+                    
 
                     $scope.createClaim = function () {
+                        var claim = {
+                            ClaimState: 'Domain.States.NewClaim',
+                            Id: commonGuidFactory.create(),
+                            Routes: [
+                                'CreateClaimCommand'
+                            ]
+                        };
+
                         console.log(claim);
 
                         var modalOptions = {
@@ -43,8 +45,9 @@
                         };
 
                         $modal.open(modalOptions).result.then(function (response) {
-                            // optionally pass back claim through response
-                            $scope.claims.unshift(claim);
+                            if(response && response.result === 'ok')
+                                $scope.claims.unshift(response.data);
+
                             console.log('Modal Result', response);
                         }, function (error) {
                             console.log('Modal Error', error);

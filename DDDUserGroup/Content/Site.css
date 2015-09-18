@@ -35,3 +35,25 @@ textarea {
 .claimsMutateItem {
     padding: 5px;
 }
+
+.ApprovedClaim {
+    background-color: lightgreen;
+}
+.ClosedClaim {
+    background-color: darkgrey;
+}
+.NewClaim {
+    background-color: lightgrey;
+}
+.OpenedClaim{
+    background-color: aqua;
+}
+.RejectedClaim{
+    background-color: red;
+}
+.RequestingApproval{
+    background-color: yellow;
+}
+
+
+

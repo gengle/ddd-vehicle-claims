@@ -3,53 +3,20 @@
     <i class="fa fa-times fa-2x"></i>
 </div>
 
-<div ng-switch
-     on="claim.ClaimState">
-    <div ng-switch-when="Domain.States.RequestingApproval">
+<div>
+    <div>
         <span ng-include
-             src="'/app/ui/claim/mutate/requestingApproval.html'"></span>
+             src="'/app/ui/claim/mutate/' + claim.ClaimState + '.html'"></span>
     </div>
 
-    <div ng-switch-when="Domain.States.NewClaim">
-        <span ng-include
-              src="'/app/ui/claim/mutate/new.html'"></span>
-    </div>
-
-    <div ng-switch-when="Domain.States.Approved">
-        <span ng-include
-             src="'/app/ui/claim/mutate/approved.html'"></span>
-    </div>
-
-    <div ng-switch-when="Domain.States.ClosedClaim">
-        <span ng-include
-             src="'/app/ui/claim/mutate/closed.html'"></span>
-    </div>
-
-    <div ng-switch-when="Domain.States.OpenedClaim">
-        <span ng-include
-             src="'/app/ui/claim/mutate/opened.html'"></span>
-    </div>
-
-    <div ng-switch-when="Domain.States.ApprovedClaim">
-        <span ng-include
-             src="'/app/ui/claim/mutate/approved.html'"></span>
-    </div>
-
-    <div ng-switch-when="Domain.States.RejectedClaim">
-        <span ng-include
-             src="'/app/ui/claim/mutate/rejected.html'"></span>
-    </div>
-
-    <div ng-controller="ClaimsControllerMutate">
+    <div>
         <tabset>
             <tab ng-repeat="route in claim.Routes"
                  heading="{{route}}">
-                <div style="margin-left:15px;margin-top:5px;"
-                     ng-switch
-                     on="route">
-                    <div ng-switch-when="ApprovePayoutCommand">
-                        <span ng-include
-                              ng-src="'/app/ui/claim/commands/' + route + '.html'"></span>
+                <div style="margin-left:15px;margin-top:5px;">
+                    <div>
+                        <div ng-include
+                             src="'/app/ui/claim/commands/' + route + '.html'"></div>
                     </div>
                 </div>
 

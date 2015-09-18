@@ -5,9 +5,9 @@
 
     app.controller('ClaimsMutateModalController', ClaimsMutateModalController);
 
-    ClaimsMutateModalController.$inject = ['$scope', '$modalInstance', 'options', '$http'];
+    ClaimsMutateModalController.$inject = ['$scope', '$modalInstance', '$http', 'options', 'ClaimsCommandFactory', 'ClaimsMapper'];
 
-    function ClaimsMutateModalController($scope, $modalInstance, options) {
+    function ClaimsMutateModalController($scope, $modalInstance, $http, options, claimsCommandFactory, claimsMapper) {
 
         $scope.model = {};
         $scope.$modalInstance = $modalInstance;
@@ -26,7 +26,7 @@
         }
 
         $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
+            $modalInstance.dismiss({ result: 'cancel', data: undefined });
         };
 
         $scope.execute = function (commandType) {
@@ -46,10 +46,10 @@
                     claimsMapper.mapResponse($scope.claim, response);
                 }
 
-                $scope.$parent.$modalInstance.close('ok');
+                $modalInstance.close({ result: 'ok', data: $scope.claim });
             }, function (error) {
                 console.log('ERROR', error);
-                $scope.$parent.$modalInstance.close('ok');
+                $modalInstance.close({ result: 'error', data: error });
             });
         }
     }
