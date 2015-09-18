@@ -7,7 +7,8 @@
     <tabset>
         <tab ng-repeat="route in claim.Routes">
             <tab-heading>{{route}}</tab-heading>
-            <div style="margin-left:15px;margin-top:5px;" ng-switch
+            <div style="margin-left:15px;margin-top:5px;" 
+                 ng-switch
                  on="route">
                 <div ng-switch-when="ApprovePayoutCommand">
                     <span ng-include
