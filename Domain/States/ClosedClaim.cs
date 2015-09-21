@@ -11,7 +11,7 @@ namespace Domain.States
         public override void ReOpen(Action action)
         {
             action();
-            Context._state = new OpenedClaim(this.Context);
+            Context.CurrentState = new OpenedClaim(this.Context);
         }
     }
 }

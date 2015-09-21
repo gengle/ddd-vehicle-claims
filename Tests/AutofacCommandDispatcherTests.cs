@@ -112,7 +112,7 @@ namespace Tests
 
             var actual = _claimRepository.GetById(id);
 
-            Assert.IsInstanceOfType(actual._state, typeof(ClosedClaim));
+            Assert.IsInstanceOfType(actual.CurrentState, typeof(ClosedClaim));
         }
 
         [TestMethod]
@@ -154,7 +154,7 @@ namespace Tests
 
             var actual = _claimRepository.GetById(id);
 
-            Assert.IsInstanceOfType(actual._state, typeof(ClosedClaim));
+            Assert.IsInstanceOfType(actual.CurrentState, typeof(ClosedClaim));
         }
     }
 }

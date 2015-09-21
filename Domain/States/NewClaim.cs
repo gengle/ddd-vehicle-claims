@@ -12,7 +12,7 @@ namespace Domain.States
         public override void AssignPolicy(Action action)
         {
             action();
-            Context._state = new OpenedClaim(this.Context);
+            Context.CurrentState = new OpenedClaim(this.Context);
         }
     }
 }

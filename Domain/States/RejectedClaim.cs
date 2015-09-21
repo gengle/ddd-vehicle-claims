@@ -11,13 +11,13 @@ namespace Domain.States
         public override void Close(Action action)
         {
             action();
-            Context._state = new ClosedClaim(this.Context);
+            Context.CurrentState = new ClosedClaim(this.Context);
         }
 
         public override void Approve(Action action)
         {
             action();
-            Context._state = new ApprovedClaim(this.Context);
+            Context.CurrentState = new ApprovedClaim(this.Context);
         }
     }
 }

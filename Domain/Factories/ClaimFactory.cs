@@ -14,7 +14,7 @@ namespace Domain.Factories
             claim.ClaimNo = new ClaimNo(memento.ClaimNo);
             claim.Payout = new Payout(memento.Payout);
             claim.Vehicle = memento.Vehicle;
-            claim._state = (ClaimState) Activator.CreateInstance(Type.GetType(memento.ClaimState), claim);
+            claim.CurrentState = ClaimState.FromString(memento.ClaimState, claim);
             
             return claim;
         }

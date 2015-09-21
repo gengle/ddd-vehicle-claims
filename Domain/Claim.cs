@@ -13,7 +13,7 @@ namespace Domain
 {
     public class Claim: IAggregateRoot<ClaimId>, IEquatable<Claim>
     {
-        public ClaimState _state;
+        public ClaimState CurrentState { get; set; }
 
         #region Properties
         public ClaimId Id { get; }
@@ -21,15 +21,15 @@ namespace Domain
         public Claim(ClaimId id)
         {
             this.Id = id;
-            _state = new NewClaim(this);
+            CurrentState = new NewClaim(this);
         }
 
-        public ClaimNo ClaimNo { get; set; } = Domain.ClaimNo.Empty;
+        public ClaimNo ClaimNo { get; internal set; } = Domain.ClaimNo.Empty;
 
-        public Payout Payout { get; set; } = Domain.Payout.Zilch;
+        public Payout Payout { get; internal set; } = Domain.Payout.Zilch;
 
-        public PolicyNo PolicyNo { get; set; } = Domain.PolicyNo.Empty;
-        public Vehicle Vehicle { get; set; } = Domain.Vehicle.Empty;
+        public PolicyNo PolicyNo { get; internal set; } = Domain.PolicyNo.Empty;
+        public Vehicle Vehicle { get; internal set; } = Domain.Vehicle.Empty;
 
         #endregion
 
@@ -69,7 +69,7 @@ namespace Domain
 
         public void AssignPolicy(PolicyNo policyNo, IPolicyService policyService)
         {
-            _state.AssignPolicy(() =>
+            CurrentState.AssignPolicy(() =>
             {
                 Guard.NotNull(() => policyNo, policyNo);
                 Guard.NotNull(() => policyService, policyService);
@@ -89,7 +89,7 @@ namespace Domain
         public void AssignVehicle(Vehicle vehicle,
             Services.IVehicleService vehicleService)
         {
-            _state.AssignVehicle(() =>
+            CurrentState.AssignVehicle(() =>
             {
                 Guard.NotNull(() => vehicle, vehicle);
                 Guard.NotNull(() => vehicleService, vehicleService);
@@ -104,7 +104,7 @@ namespace Domain
             Guard.NotNull(() => payout, payout);
             Guard.NotNull(() => underwritingService, underwritingService);
 
-            _state.Approve(() =>
+            CurrentState.Approve(() =>
             {
                 underwritingService.ProcessPayout(this.PolicyNo, payout);
                 this.Payout = payout;
@@ -113,22 +113,21 @@ namespace Domain
 
         public void RejectPayout(Payout payout, IUnderwritingService underwritingService)
         {
-            _state.Reject(() =>
+            CurrentState.Reject(() =>
             {
                 underwritingService.CancelPayout(this.PolicyNo, this.Payout);
                 this.Payout = Payout.Zilch;
             });
         }
-        #endregion
 
         public void Reopen()
         {
-            _state.ReOpen(() => Expression.Empty());
+            CurrentState.ReOpen(() => Expression.Empty());
         }
 
         public void Close()
         {
-            _state.Close(()=>Expression.Empty());
+            CurrentState.Close(()=>Expression.Empty());
         }
 
         public ClaimMemento GetMemento(ClaimMemento memento = null)
@@ -140,8 +139,9 @@ namespace Domain
             m.ClaimNo = this.ClaimNo;
             m.Payout = this.Payout;
             m.Vehicle = this.Vehicle;
-            m.ClaimState = this._state.GetType().ToString();
+            m.ClaimState = this.CurrentState.GetType().ToString();
             return m;
         }
+        #endregion
     }
 }

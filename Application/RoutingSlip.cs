@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Application.Services;
+using Domain.States;
 
 namespace Application
 {
@@ -13,13 +15,13 @@ namespace Application
             WhenType = whenType;
         }
 
-        public RoutingSlip Relate<T>()
+        public RoutingSlip Relate<T>() where T: ICommand
         {
             RelatedTypes.Add(typeof(T));
             return this;
         }
 
-        public static RoutingSlip For<T>()
+        public static RoutingSlip For<T>() where T: ClaimState
         {
             return new RoutingSlip(typeof(T));
         }

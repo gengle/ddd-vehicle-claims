@@ -12,19 +12,19 @@ namespace Domain.States
         public override void AssignVehicle(Action action)
         {
             action();
-            Context._state = new RequestingApproval(this.Context);
+            Context.CurrentState = new RequestingApproval(this.Context);
         }
 
         public override void Approve(Action action)
         {
             action();
-            Context._state = new ApprovedClaim(this.Context);
+            Context.CurrentState = new ApprovedClaim(this.Context);
         }
 
         public override void Reject(Action action)
         {
             action();
-            Context._state = new RejectedClaim(this.Context);
+            Context.CurrentState = new RejectedClaim(this.Context);
         }
     }
 }

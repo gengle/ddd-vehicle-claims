@@ -48,5 +48,10 @@ namespace Domain.States
         {
             throw new DomainException("Action not allowed at this time");
         }
+
+        public static ClaimState FromString(string stateName, Claim claim)
+        {
+            return (ClaimState)Activator.CreateInstance(Type.GetType(stateName), claim);
+        }
     }
 }
