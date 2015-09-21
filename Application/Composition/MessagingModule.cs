@@ -10,7 +10,7 @@ namespace Application.Composition
             builder.RegisterAssemblyTypes(typeof (MessagingModule).Assembly)
                 .AsClosedTypesOf(typeof (ICommandHandler<>));
                
-            builder.RegisterType<AutofacCommandDispatcher>()
+            builder.RegisterType<CommandDispatcher>()
                 .As<ICommandDispatcher>();
 
             builder.RegisterType<Services.RoutingRelationService>().AsSelf();

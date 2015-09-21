@@ -47,5 +47,10 @@ namespace Application.Services
             var memento = _claimRepository.GetById(ClaimId.FromString(id)).GetMemento();
             return ClaimView(memento);
         }
+
+        public ClaimView GetById(Guid id)
+        {
+            return GetById(id.ToString());
+        }
     }
 }

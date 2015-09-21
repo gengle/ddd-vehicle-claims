@@ -10,8 +10,8 @@ using System.Windows.Forms;
 using Application.Messaging.Commands;
 using Application.Services;
 using Application.ViewModels;
-using Domain;
 using Infrastructure.Services;
+using Commands = Application.Messaging.Commands;
 
 namespace WindowsUI
 {
@@ -81,7 +81,7 @@ namespace WindowsUI
 
         void Refresh(ClaimView view)
         {
-            var reloaded = _claimReader.GetById(new ClaimId(view.Id));
+            var reloaded = _claimReader.GetById(view.Id);
             _claims[bindingSource1.Position] = reloaded;
             dataGridView1.Refresh();
             UpdateTabPages(reloaded);
@@ -133,14 +133,12 @@ namespace WindowsUI
             var item = bindingSource1.Current as ClaimView;
             if (item != null)
             {
-                _dispatcher.Dispatch(new AssignVehicleCommand()
-                {
-                    Id = item.Id.ToString(),
-                    Vehicle = new Vehicle().WithMake(txtMake.Text)
-                            .WithModel(txtModel.Text)
-                            .WithYear(txtYear.Text)
-                            .WithVin(txtVin.Text)
-                });
+                _dispatcher.Dispatch(Commands.AssignVehicleCommand.WithId(item.Id)
+                    .WithMake(txtMake.Text)
+                    .WithModel(txtModel.Text)
+                    .WithYear(txtYear.Text)
+                    .WithVin(txtVin.Text));
+                
                 Refresh(item);
                 txtMake.Text = string.Empty;
                 txtModel.Text = string.Empty;
@@ -151,10 +149,10 @@ namespace WindowsUI
 
         private void cmdAddClaim_Click(object sender, EventArgs e)
         {
-            var id = ClaimId.NewId();
+            var id = CreateClaimCommand.NewId();
             _dispatcher.Dispatch(new CreateClaimCommand()
             {
-                Id = id.ToString(),
+                Id = id,
             });
             _workspace.Commit();
             var newClaim = _claimReader.GetById(id);

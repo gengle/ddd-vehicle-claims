@@ -5,6 +5,9 @@ using Core;
 
 namespace WindowsUI
 {
+    /// <summary>
+    /// traps any exception thrown from a dispatcher and displays it as a MessageBox
+    /// </summary>
     public class ExceptionTrapDispatcher : ICommandDispatcher
     {
         private readonly ICommandDispatcher _inner;

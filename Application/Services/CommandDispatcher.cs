@@ -5,12 +5,12 @@ using Domain.Repositories;
 
 namespace Application.Services
 {
-    public class AutofacCommandDispatcher : ICommandDispatcher
+    public class CommandDispatcher : ICommandDispatcher
     {
         private readonly IComponentContext _context;
         private readonly Domain.Repositories.IClaimRepository _claimRepository;
 
-        public AutofacCommandDispatcher(IComponentContext context, IClaimRepository claimRepository)
+        public CommandDispatcher(IComponentContext context, IClaimRepository claimRepository)
         {
             this._context = context;
             _claimRepository = claimRepository;

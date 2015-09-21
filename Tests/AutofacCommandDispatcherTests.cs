@@ -63,7 +63,10 @@ namespace Tests
             _unitUnderTest.Dispatch(new AssignVehicleCommand()
             {
                 Id = id,
-                Vehicle = expected
+                Make = "Ford",
+                Model = "Mustang",
+                Year = 2015,
+                Vin="12345"
             });
 
             var actual = _claimRepository.GetAll().First();
@@ -79,7 +82,10 @@ namespace Tests
             _unitUnderTest.Dispatch(new AssignVehicleCommand()
             {
                 Id = id,
-                Vehicle = new Vehicle(make: "Ford", model: "Mustang", vin: "12345", year: 2015)
+                Make = "Ford",
+                Model = "Mustang",
+                Year = 2015,
+                Vin = "12345"
             });
             _unitUnderTest.Dispatch(new RejectPayoutCommand() { Id = id});
 
@@ -96,7 +102,10 @@ namespace Tests
             _unitUnderTest.Dispatch(new AssignVehicleCommand()
             {
                 Id = id,
-                Vehicle = new Vehicle(make: "Ford", model: "Mustang", vin: "12345", year: 2015)
+                Make = "Ford",
+                Model = "Mustang",
+                Year = 2015,
+                Vin = "12345"
             });
             _unitUnderTest.Dispatch(new RejectPayoutCommand() { Id = id });
             _unitUnderTest.Dispatch(new CloseClaimCommand() { Id = id });
@@ -114,7 +123,10 @@ namespace Tests
             _unitUnderTest.Dispatch(new AssignVehicleCommand()
             {
                 Id = id,
-                Vehicle = new Vehicle(make: "Ford", model: "Mustang", vin: "12345", year: 2015)
+                Make = "Ford",
+                Model = "Mustang",
+                Year = 2015,
+                Vin = "12345"
             });
             var expected = 5m;
             _unitUnderTest.Dispatch(new ApprovePayoutCommand() { Id = id, Amount =expected});
@@ -132,7 +144,10 @@ namespace Tests
             _unitUnderTest.Dispatch(new AssignVehicleCommand()
             {
                 Id = id,
-                Vehicle = new Vehicle(make: "Ford", model: "Mustang", vin: "12345", year: 2015)
+                Make = "Ford",
+                Model = "Mustang",
+                Year = 2015,
+                Vin = "12345"
             });
             _unitUnderTest.Dispatch(new ApprovePayoutCommand() { Id = id, Amount = 5m });
             _unitUnderTest.Dispatch(new CloseClaimCommand() { Id = id});

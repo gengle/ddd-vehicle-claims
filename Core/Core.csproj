@@ -43,7 +43,6 @@
     <Compile Include="DomainException.cs" />
     <Compile Include="Guard.cs" />
     <Compile Include="IAggregateRoot.cs" />
-    <Compile Include="ICommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
