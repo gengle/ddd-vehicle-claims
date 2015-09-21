@@ -24,7 +24,7 @@
 
             var modalOptions = {
                 templateUrl: '/app/ui/claim/mutate.html',
-                controller: 'ClaimsControllerMutate',
+                controller: 'ClaimsMutateModalController',
                 size: 'lg',
                 backdrop: 'static',
                 keyboard: true,

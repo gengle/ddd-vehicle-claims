@@ -14,27 +14,43 @@
             scope: {
                 claims: "="
             },
-            controller: ['$scope', '$http', 'ClaimsCommandFactory', 'CommonGuidFactory', 'ClaimsMapper', 
-                function ($scope, $http, claimsCommandFactory, commonGuidFactory, claimsMapper) {
+            controller: ['$scope', '$http', '$modal', 'ClaimsCommandFactory', 'CommonGuidFactory', 'ClaimsMapper', 
+                function ($scope, $http, $modal, claimsCommandFactory, commonGuidFactory, claimsMapper) {
+                    
 
-                $scope.createClaim = function () {
-                    var command = claimsCommandFactory.create('CreateClaimCommand', {
-                        id: commonGuidFactory.create(),
-                        policyNo: ''
-                    });
+                    $scope.createClaim = function () {
+                        var claim = {
+                            ClaimState: 'NewClaim',
+                            Id: commonGuidFactory.create(),
+                            Routes: [
+                                'CreateClaimCommand'
+                            ]
+                        };
 
-                    $http.post('/api/commands/execute', command)
-                        .then(function (response) {
-                            console.log('SUCCESS', response);
-                            var claim = {};
+                        console.log(claim);
 
-                            if (response && response.data) {
-                                claimsMapper.mapResponse(claim, response);
-                                $scope.claims.unshift(claim);
+                        var modalOptions = {
+                            templateUrl: '/app/ui/claim/mutate.html',
+                            controller: 'ClaimsMutateModalController',
+                            size: 'lg',
+                            backdrop: 'static',
+                            keyboard: true,
+                            resolve: {
+                                options: function () {
+                                    return {
+                                        claim: claim
+                                    };
+                                }
                             }
+                        };
 
+                        $modal.open(modalOptions).result.then(function (response) {
+                            if(response && response.result === 'ok')
+                                $scope.claims.unshift(response.data);
+
+                            console.log('Modal Result', response);
                         }, function (error) {
-                            console.log('ERROR', error);
+                            console.log('Modal Error', error);
                         });
                 }
             }]

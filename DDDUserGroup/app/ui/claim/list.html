@@ -6,47 +6,54 @@
 </div>
 
 <div class="claimList" 
-     ng-repeat="claim in vm.claims" 
-     ng-switch 
-     on="claim.ClaimState">
+     ng-repeat="claim in vm.claims">
 
     <i ng-click="vm.mutate(claim)"
        style="margin-left:5px;cursor: pointer;" 
        class="fa fa-pencil fa-2x"></i>
 
-    <div ng-switch-when="Domain.States.RequestingApproval">
-        <span ng-include 
-              src="'/app/ui/claim/list/requestingApproval.html'"></span>
-    </div>
-
-    <div ng-switch-when="Domain.States.NewClaim">
+    <div ng-class="claim.ClaimState" class="claimsListItem">
         <span ng-include
-              src="'/app/ui/claim/list/new.html'"></span>
-    </div>
+                src="'/app/ui/claim/list/' + claim.ClaimState + '.html'"></span>
 
-    <div ng-switch-when="Domain.States.Approved">
-        <span ng-include 
-             src="'/app/ui/claim/list/approved.html'"></span>
-    </div>
+        <div class="row">
+            <div class="col-md-6"><h4>Payout:</h4><span>${{claim.Payout}}</span></div>
+            <div class="col-md-6"><h4>Policy#:</h4><span>{{claim.PolicyNo}}</span></div>
+        </div>
 
-    <div ng-switch-when="Domain.States.ClosedClaim">
-        <span ng-include 
-             src="'/app/ui/claim/list/closed.html'"></span>
+        <div class="claimListVehicle">
+            <div class="row">
+                <h3 class="col-md-10">Vehicle</h3>
+                <div style="cursor:pointer;"
+                     ng-click="claim.collapseVehicle = !claim.collapseVehicle">
+                    <i class="fa fa-chevron-circle-down fa-2x col-md-2"
+                       ng-hide="claim.collapseVehicle"></i>
+                    <i class="fa fa-chevron-circle-up fa-2x col-md-2"
+                       ng-show="claim.collapseVehicle"></i>
+                </div>
+            </div>
+            <div collapse="!claim.collapseVehicle">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Make:</h4>
+                        <div style="margin-left:5px;">{{claim.VehicleMake}}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Model:</h4>
+                        <div style="margin-left:5px;">{{claim.VehicleModel}}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Year:</h4>
+                        <div style="margin-left:5px;">{{claim.VehicleYear}}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>VIN:</h4>
+                        <div style="margin-left:5px;">{{claim.VehicleVin}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div ng-switch-when="Domain.States.OpenedClaim" >
-        <span ng-include 
-             src="'/app/ui/claim/list/opened.html'"></span>
-    </div>
-
-    <div ng-switch-when="Domain.States.ApprovedClaim">
-        <span ng-include 
-             src="'/app/ui/claim/list/approved.html'"></span>
-    </div>
-
-    <div ng-switch-when="Domain.States.RejectedClaim">
-        <span ng-include 
-             src="'/app/ui/claim/list/rejected.html'"></span>
-    </div>
-
 </div>
